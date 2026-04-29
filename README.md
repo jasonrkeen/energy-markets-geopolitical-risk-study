@@ -37,9 +37,9 @@ Geopolitical Risk → Oil Prices → Energy Equities
 Energy markets are widely assumed to react directly to geopolitical events.  
 This analysis challenges that assumption.
 
-- Geopolitical risk is not statistically significant as a direct predictor of XLE returns.
-- Oil returns and broad market returns are the strongest explanatory variables.
-- Energy equities appear to respond to geopolitical shocks mainly through commodity price movements.
+- Geopolitical risk is not statistically significant as a direct predictor of XLE returns
+- Oil returns and broad market returns are the strongest explanatory variables
+- Energy equities respond to geopolitical shocks mainly through commodity price movements
 
 ---
 
@@ -69,10 +69,10 @@ The index is based on text analysis of major newspapers and measures the share o
 
 The analysis follows four steps:
 
-1. Convert daily financial data to monthly frequency.
-2. Compute monthly log returns.
-3. Estimate OLS regressions using geopolitical risk, oil returns, and market returns.
-4. Extend the analysis using firm-level regressions, event study comparisons, and scenario forecasting.
+1. Convert daily financial data to monthly frequency  
+2. Compute monthly log returns  
+3. Estimate OLS regressions using geopolitical risk, oil returns, and market returns  
+4. Extend the analysis using firm-level regressions, event study comparisons, and scenario forecasting  
 
 Core model:
 
@@ -89,9 +89,9 @@ model = sm.OLS(y, X).fit()
 
 ### Sector-Level Results: XLE
 
-- **WTI returns:** highly significant
-- **S&P 500 returns:** highly significant
-- **Geopolitical risk:** not statistically significant
+- **WTI returns:** highly significant  
+- **S&P 500 returns:** highly significant  
+- **Geopolitical risk:** not statistically significant  
 
 R² ≈ 0.57
 
@@ -166,23 +166,46 @@ This suggests that financial markets incorporate geopolitical information indire
 
 ## Tech Stack
 
-- Python
-- pandas
-- numpy
-- statsmodels
-- matplotlib
-- yfinance
+- Python  
+- pandas  
+- numpy  
+- statsmodels  
+- matplotlib  
+- yfinance  
 
 ---
 
 ## How to Run
 
+### 🔧 Setup Environment
+
+```bash
+python -m venv .venv
+```
+
+Activate:
+
+```bash
+.venv\Scripts\activate
+```
+
+Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Open:
+---
+
+## 📌 Notes
+
+- Charts are saved in:
+```text
+outputs/charts/
 ```
+
+- Run the full analysis:
+```text
 notebooks/analysis.ipynb
 ```
 
