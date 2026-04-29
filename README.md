@@ -1,80 +1,80 @@
-# Energy Markets & Geopolitical Risk
+# 📊 Energy Markets & Geopolitical Risk Analysis
 
-## Overview
-
-This project investigates whether **geopolitical risk impacts energy equity returns**, using:
-
-- **XLE (Energy Select Sector SPDR Fund)** for sector-level analysis
-- **BP, Shell, Exxon Mobil, and Chevron** for firm-level analysis
-
-The central question:
-
-> Do energy stocks respond directly to geopolitical risk, or indirectly through oil prices?
+Empirical analysis of how geopolitical risk impacts energy equities (XLE) using Python and econometric modeling.
 
 ---
 
-## TL;DR
+## 🔑 Key Insight
 
-- Geopolitical risk does **not directly impact** energy equity returns  
-- Oil prices and market returns are the **primary drivers**  
-- Geopolitical events affect energy stocks **indirectly through oil markets**
+> Geopolitical risk does not directly drive energy stock returns — its impact is transmitted through oil prices.
 
 ---
 
-## 🧠 Key Finding
+## 📈 XLE vs Oil Returns
 
-> **Geopolitical risk is not a statistically significant direct driver of energy equity returns.  
-Instead, its impact is transmitted through oil prices.**
+![XLE vs Oil](outputs/charts/xle_vs_oil.png)
 
-```text
-Geopolitical Risk → Oil Prices → Energy Equities
-```
+> Strong positive relationship between oil prices and energy equity returns (corr ≈ 0.62)
 
 ---
 
-## Why This Matters
+## 📊 Key Results
 
-Energy markets are widely assumed to react directly to geopolitical events.  
-This analysis challenges that assumption.
+- Model explanatory power: **R² ≈ 0.57**
+- Oil sensitivity: **β ≈ 0.32**
+- Market exposure: **β ≈ 0.75**
+- Correlation:
+  - XLE vs GPR: ~0.00
+  - XLE vs Oil: ~0.62
 
-- Geopolitical risk is not statistically significant as a direct predictor of XLE returns
-- Oil returns and broad market returns are the strongest explanatory variables
-- Energy equities respond to geopolitical shocks mainly through commodity price movements
-
----
-
-## Data Sources
-
-- XLE, BP, Shell, Exxon Mobil, Chevron, WTI futures, and S&P 500 data: `yfinance`
-- Geopolitical Risk Index: Caldara & Iacoviello  
-  https://www.matteoiacoviello.com/gpr.htm
-- U.S. Energy Information Administration Short-Term Energy Outlook  
-  https://www.eia.gov/outlooks/steo/report/global_oil.php
-- International Energy Agency Oil Market Report  
-  https://www.iea.org/reports/oil-market-report-april-2026
-- OPEC Monthly Oil Market Report  
-  https://www.opec.org/assets/assetdb/momr-march-2026.pdf
+### 💡 Interpretation
+Markets do not price geopolitical risk directly—they price its economic consequences through oil.
 
 ---
 
-## Geopolitical Risk Measure
+## 🛢️ Oil Sensitivity by Company
 
-This project uses the **Geopolitical Risk (GPR) Index** developed by Dario Caldara and Matteo Iacoviello.
+![Oil Betas](outputs/charts/oil_betas.png)
 
-The index is based on text analysis of major newspapers and measures the share of news coverage related to geopolitical risk.
+| Company | Oil Sensitivity |
+|--------|----------------|
+| BP | ~0.35 |
+| Shell | ~0.31 |
+| Chevron | ~0.30 |
+| Exxon | ~0.28 |
 
 ---
 
-## Methodology
+## 🔮 Scenario Forecasting (XLE)
 
-The analysis follows four steps:
+| Scenario | Oil Return | S&P 500 | Forecast XLE |
+|--------|-----------|--------|-------------|
+| Bear Case | -10% | -5% | **-6.8%** |
+| Base Case | 0% | +1% | **+0.8%** |
+| Bull Case | +8% | +4% | **+5.7%** |
+| Oil Shock | +15% | -2% | **+3.8%** |
+| Market Selloff | -5% | -10% | **-8.8%** |
 
-1. Convert daily financial data to monthly frequency  
-2. Compute monthly log returns  
-3. Estimate OLS regressions using geopolitical risk, oil returns, and market returns  
-4. Extend the analysis using firm-level regressions, event study comparisons, and scenario forecasting  
+> Oil shocks can offset weak equity markets, highlighting the sector’s unique exposure to commodity dynamics.
 
-Core model:
+---
+
+## 🌍 Geopolitical Risk (GPR)
+
+The Geopolitical Risk Index (Caldara & Iacoviello) measures the share of global news coverage related to geopolitical tensions such as wars and terrorism.
+
+- Baseline level ≈ 100  
+- Crisis periods can exceed 150–300  
+
+Despite these spikes, GPR is not a statistically significant predictor of energy equity returns in this model.
+
+---
+
+## ⚙️ Methodology
+
+- Data: XLE, WTI, S&P 500 (yfinance), GPR index  
+- Frequency: Daily → Monthly aggregation  
+- Model: OLS regression with macro controls  
 
 ```python
 X = sm.add_constant(df[["gpr", "wti_return", "sp500_return"]])
@@ -85,132 +85,41 @@ model = sm.OLS(y, X).fit()
 
 ---
 
-## Results
+## 🎯 Why This Matters
 
-### Sector-Level Results: XLE
-
-- **WTI returns:** highly significant  
-- **S&P 500 returns:** highly significant  
-- **Geopolitical risk:** not statistically significant  
-
-R² ≈ 0.57
-
-This implies that energy equities behave as a combination of:
-- **market beta (broad equity exposure)**
-- **commodity beta (oil price exposure)**
+- Demonstrates how macro risk transmits through commodity markets  
+- Highlights indirect pricing mechanisms in financial markets  
+- Applies econometrics to real-world financial data  
 
 ---
 
-## Visual Evidence
+## 📁 Project Structure
 
-![XLE vs Oil Returns](outputs/charts/xle_vs_oil.png)
-
-![Oil Sensitivity by Company](outputs/charts/oil_betas.png)
-
----
-
-## Firm-Level Analysis
-
-| Company | Oil Sensitivity |
-|--------|-----------------|
-| BP | ~0.35 |
-| Shell | ~0.31 |
-| Chevron | ~0.30 |
-| Exxon | ~0.28 |
-
----
-
-## Event Study
-
-| Period | Average Monthly XLE Return |
-|--------|-----------------------------|
-| Normal GPR periods | ~0.0067 |
-| High GPR periods | ~0.0062 |
-
----
-
-## Correlation Analysis
-
-| Variable Pair | Correlation |
-|--------------|-------------|
-| XLE returns vs WTI returns | ~0.62 |
-| XLE returns vs GPR | ~0.00 |
-
----
-
-## Scenario Forecasting
-
-| Scenario | WTI (%) | S&P 500 (%) | Forecast XLE Return (%) |
-|---------|---------|-------------|--------------------------|
-| Bear Case | -10 | -5 | -6.8 |
-| Base Case | 0 | 1 | 0.8 |
-| Bull Case | 8 | 4 | 5.7 |
-| Oil Shock | 15 | -2 | 3.8 |
-| Market Selloff | -5 | -10 | -8.8 |
-
-This framework provides a simple way to translate macro assumptions into expected sector performance.
-
----
-
-## Final Takeaway
-
-Across multiple approaches—including regression analysis, firm-level modeling, event studies, correlation analysis, and scenario forecasting—the results are consistent:
-
-- Geopolitical risk is not a statistically significant direct driver of energy equity returns  
-- Oil prices act as the primary transmission channel  
-- Market conditions remain the dominant factor  
-
-This suggests that financial markets incorporate geopolitical information indirectly through commodity prices rather than pricing geopolitical risk directly into equities.
-
----
-
-## Tech Stack
-
-- Python  
-- pandas  
-- numpy  
-- statsmodels  
-- matplotlib  
-- yfinance  
-
----
-
-## How to Run
-
-### 🔧 Setup Environment
-
-```bash
-python -m venv .venv
+```
+energy-markets-geopolitical-risk-study/
+├── data/
+├── notebooks/
+├── outputs/
+│   ├── charts/
+│   └── tables/
+├── README.md
+└── requirements.txt
 ```
 
-Activate:
+---
 
-```bash
-.venv\Scripts\activate
-```
-
-Install dependencies:
+## ▶️ Setup
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## 📌 Notes
-
-- Charts are saved in:
-```text
-outputs/charts/
-```
-
-- Run the full analysis:
-```text
-notebooks/analysis.ipynb
+```bash
+jupyter notebook notebooks/analysis.ipynb
 ```
 
 ---
 
-## Author
+## 👤 Author
 
 Jason Keen
