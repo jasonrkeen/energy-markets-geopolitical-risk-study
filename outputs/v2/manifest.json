@@ -1,0 +1,74 @@
+{
+  "config": {
+    "start": "1998-01-01",
+    "end_exclusive": "2026-05-01",
+    "complete_through": "2026-03-31",
+    "replay_through": "2026-04-28",
+    "hac_lags": [
+      3,
+      6,
+      12
+    ],
+    "tickers": [
+      "XLE",
+      "CL=F",
+      "^GSPC",
+      "BP",
+      "SHEL",
+      "XOM",
+      "CVX"
+    ]
+  },
+  "packages": {
+    "pandas": "3.0.2",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "statsmodels": "0.14.6",
+    "matplotlib": "3.10.8",
+    "yfinance": "1.2.2",
+    "xlrd": "2.0.2"
+  },
+  "market_receipt": {
+    "provider": "Yahoo Finance via yfinance",
+    "yfinance": "1.2.2",
+    "retrieved_start_utc": "2026-10-26T02:46:57.029708+00:00",
+    "retrieved_end_utc": "2026-10-26T02:47:00.523337+00:00",
+    "start": "1998-01-01",
+    "end_exclusive": "2026-05-01",
+    "tickers": [
+      "XLE",
+      "CL=F",
+      "^GSPC",
+      "BP",
+      "SHEL",
+      "XOM",
+      "CVX"
+    ],
+    "auto_adjust": false,
+    "back_adjust": false,
+    "repair": false,
+    "actions": true,
+    "keepna": true,
+    "sha256": "a1d49879f1f8fa145e9b17d0902f1e66c358b107cf1946be9fd9db69eae93c35",
+    "vintage_warning": "Current vendor vintage, not the missing April 2026 download."
+  },
+  "gpr_sha256": "b77dc72915b7ca73f2d2278057388426fa147f7bc8f93adc5ebf7cb2f8e8c251",
+  "gpr_vintage": "Retained V1 workbook through 2026-04-27; retrieval date unknown",
+  "results_status": "Exploratory, current market vintage plus retained GPR vintage",
+  "complete_month_cutoff": "2026-03-31",
+  "common_sample_n": 306,
+  "common_sample_start": "2000-10-31",
+  "common_sample_end": "2026-03-31",
+  "v1_preserved": true,
+  "source_code_hashes": {
+    "main.py": "62075c0a37b006842ed4820f3546bb819f80119abf3f3a0aedb261f9dc661842",
+    "src/__init__.py": "abe9e70d0a6e5aed6fe576a7d55024c63112c14a86aa4bd0609a36da24f7ea0d",
+    "src/analysis.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/config.py": "7d675540d25a797a35014177446f2874b065ee13bc9a00bb074e93a7c958b9a3",
+    "src/data_loader.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/v1_audit.py": "5f4b4a0f27c6e0c8ab8d7dab163495539a9cbe23793aad33efa98f32c10152c0",
+    "src/v2_data.py": "08aa1171e23fbfd10d93ac52fce750df9aef4f34d9a54bda76aa5bb8076d2e26",
+    "src/v2_models.py": "f182cff20ef8d7e3cde2e27b6990fd3bd9ccc01466d7ad055b5267a8911e15a6",
+    "src/visualization.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

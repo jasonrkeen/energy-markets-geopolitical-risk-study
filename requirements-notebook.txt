@@ -1,0 +1,3 @@
+# Optional interface; main.py does not require Jupyter.
+-r requirements.txt
+jupyter==1.1.1

@@ -1,0 +1,12 @@
+model,hypothesis,p,p_holm_across_models
+xle_gpr_market,all GPR terms jointly zero,0.42817944413762626,1.0
+xle_full,all GPR terms jointly zero,0.06320497500234805,0.6320497500234805
+oil_gpr_market,all GPR terms jointly zero,0.8404597806175655,1.0
+oil_gpr_lags_controlled,all GPR terms jointly zero,0.6731610870501379,1.0
+xle_gpr_lags_controlled,all GPR terms jointly zero,0.07053937789659545,0.6348544010693591
+oil_lagged_only,all GPR terms jointly zero,0.738540072771535,1.0
+xle_lagged_only,all GPR terms jointly zero,0.7375802955618724,1.0
+xle_gpr_change,all GPR terms jointly zero,0.0500684393169325,0.5507528324862575
+oil_gpr_change,all GPR terms jointly zero,0.7415190793024973,1.0
+xle_close_sensitivity,all GPR terms jointly zero,0.07120139137070126,0.6348544010693591
+xle_oil_dollar_sensitivity,all GPR terms jointly zero,0.5077901820920808,1.0

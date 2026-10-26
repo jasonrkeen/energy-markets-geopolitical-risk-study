@@ -1,125 +1,46 @@
-# 📊 Energy Markets & Geopolitical Risk Analysis
+# Energy Markets and Geopolitical Risk — Version 2 research review
 
-Empirical analysis of how geopolitical risk impacts energy equities (XLE) using Python and econometric modeling.
+Retrospective monthly association study of XLE, a WTI futures price proxy, S&P 500 price returns and the Caldara–Iacoviello daily GPR index. **Exploratory results; no causal mediation or validated forecasting claim.**
 
----
+## Verified results
 
-## 🔑 Key Insight
+The archived 33-cell Version 1 notebook was replayed with a dated current-vintage market cache: 308 observations, R² 0.5751, oil coefficient 0.3230 and market coefficient 0.7518. This closely matches saved results but is not exact original-vintage reproduction. Original daily downloads and dependency versions were not retained.
 
-> Geopolitical risk does not directly drive energy stock returns — its impact is transmitted through oil prices.
+Version 1 included partial April 2026 observations. Version 2 excludes that month and uses explicit adjustment conventions, calendar-month lags, matched samples and robust uncertainty estimates. On the common October 2000–March 2026 sample (306 observations):
 
----
+| Term | Coefficient | 95% HAC(6) interval | p-value |
+|---|---:|---:|---:|
+| Oil proxy log change | 0.3208 | 0.2283 to 0.4134 | <0.001 |
+| S&P 500 log return | 0.7822 | 0.6011 to 0.9633 | <0.001 |
+| GPR per 100 index points | 0.00770 | −0.00043 to 0.01582 | 0.063 |
 
-## 📈 XLE vs Oil Returns
+R² = 0.5892. GPR inference varies across specifications and covariance choices. The controlled contemporaneous GPR–oil p-value is 0.840; none of the eleven joint GPR tests rejects at 5% after Holm adjustment. This neither establishes a zero GPR effect nor supports an oil-transmission mechanism. Results are retrospective and sensitive to proxy, sample and model choices.
 
-![XLE vs Oil](outputs/charts/xle_vs_oil.png)
+![Conditional coefficients and uncertainty](outputs/v2/xle_coefficients.png)
 
-> Strong positive relationship between oil prices and energy equity returns (corr ≈ 0.62)
+## Reproduce
 
----
+Use Python 3.14 in a virtual environment, from repository root:
 
-## 📊 Key Results
-
-- Model explanatory power: **R² ≈ 0.57**
-- Oil sensitivity: **β ≈ 0.32**
-- Market exposure: **β ≈ 0.75**
-- Correlation:
-  - XLE vs GPR: ~0.00
-  - XLE vs Oil: ~0.62
-
-### 💡 Interpretation
-Markets do not price geopolitical risk directly—they price its economic consequences through oil.
-
----
-
-## 🛢️ Oil Sensitivity by Company
-
-![Oil Betas](outputs/charts/oil_betas.png)
-
-| Company | Oil Sensitivity |
-|--------|----------------|
-| BP | ~0.35 |
-| Shell | ~0.31 |
-| Chevron | ~0.30 |
-| Exxon | ~0.28 |
-
----
-
-## 🔮 Scenario Forecasting (XLE)
-
-| Scenario | Oil Return | S&P 500 | Forecast XLE |
-|--------|-----------|--------|-------------|
-| Bear Case | -10% | -5% | **-6.8%** |
-| Base Case | 0% | +1% | **+0.8%** |
-| Bull Case | +8% | +4% | **+5.7%** |
-| Oil Shock | +15% | -2% | **+3.8%** |
-| Market Selloff | -5% | -10% | **-8.8%** |
-
-> Oil shocks can offset weak equity markets, highlighting the sector’s unique exposure to commodity dynamics.
-
----
-
-## 🌍 Geopolitical Risk (GPR)
-
-The Geopolitical Risk Index (Caldara & Iacoviello) measures the share of global news coverage related to geopolitical tensions such as wars and terrorism.
-
-- Baseline level ≈ 100  
-- Crisis periods can exceed 150–300  
-
-Despite these spikes, GPR is not a statistically significant predictor of energy equity returns in this model.
-
----
-
-## ⚙️ Methodology
-
-- Data: XLE, WTI, S&P 500 (yfinance), GPR index  
-- Frequency: Daily → Monthly aggregation  
-- Model: OLS regression with macro controls  
-
-```python
-X = sm.add_constant(df[["gpr", "wti_return", "sp500_return"]])
-y = df["return"]
-
-model = sm.OLS(y, X).fit()
+```sh
+python -m pip install -r requirements-lock.txt
+python main.py --fetch
+python -m pytest -q
+python main.py
 ```
 
----
+The first command sequence downloads market inputs once; subsequent pipeline runs use the checksum-verified local cache. A fresh download may contain vendor revisions. Raw new downloads are ignored by Git. Exact same-vintage reproduction requires the retained local cache. `requirements.txt` lists direct pins; `requirements-lock.txt` records the tested clean environment, including transitive packages. The optional notebook interface is in `requirements-notebook.txt`.
 
-## 🎯 Why This Matters
+## Review material
 
-- Demonstrates how macro risk transmits through commodity markets  
-- Highlights indirect pricing mechanisms in financial markets  
-- Applies econometrics to real-world financial data  
+- [Short findings and red-team report](docs/FINDINGS_V2.md)
+- [Methods, source references and reproduction boundaries](docs/METHODOLOGY_V2.md)
+- [Validation scope and evidence](docs/VALIDATION.md)
+- [Coefficient table](outputs/v2/coefficients.csv), [joint GPR tests](outputs/v2/joint_gpr_tests.csv), [source manifest](outputs/v2/manifest.json)
+- [Original README, retained as historical evidence](docs/v1/README.md)
 
----
+The original notebook, retained data and three V1 outputs are unchanged. Do not execute the old notebook in place to reproduce this review: it fetches unbounded current data and overwrites original outputs. The new pipeline executes its code in an isolated replay directory.
 
-## 📁 Project Structure
+Scenario outputs are conditional illustrations with correct simple/log conversions, not investment forecasts. CL=F is a stitched futures price proxy without a documented investment-roll strategy; ^GSPC excludes dividends. The retained GPR workbook ends April 27, 2026 and has no historical download receipt. See the methodology before interpreting results.
 
-```
-energy-markets-geopolitical-risk-study/
-├── data/
-├── notebooks/
-├── outputs/
-│   ├── charts/
-│   └── tables/
-├── README.md
-└── requirements.txt
-```
-
----
-
-## ▶️ Setup
-
-```bash
-pip install -r requirements.txt
-```
-
-```bash
-jupyter notebook notebooks/analysis.ipynb
-```
-
----
-
-## 👤 Author
-
-Jason Keen
+Author: Jason Keen
