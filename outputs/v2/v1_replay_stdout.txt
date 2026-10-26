@@ -5,8 +5,8 @@ Saved monthly XLE dataset to data/processed/xle_monthly.csv
 Dep. Variable:                 return   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                 -0.003
 Method:                 Least Squares   F-statistic:                  0.009311
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):              0.923
-Time:                        21:56:20   Log-Likelihood:                 395.86
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.923
+Time:                        06:22:28   Log-Likelihood:                 395.86
 No. Observations:                 328   AIC:                            -787.7
 Df Residuals:                     326   BIC:                            -780.1
 Df Model:                           1                                         
@@ -30,8 +30,8 @@ Notes:
 Dep. Variable:             volatility   R-squared:                       0.005
 Model:                            OLS   Adj. R-squared:                  0.002
 Method:                 Least Squares   F-statistic:                     1.750
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):              0.187
-Time:                        21:56:20   Log-Likelihood:                 1082.4
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.187
+Time:                        06:22:28   Log-Likelihood:                 1082.4
 No. Observations:                 328   AIC:                            -2161.
 Df Residuals:                     326   BIC:                            -2153.
 Df Model:                           1                                         
@@ -55,8 +55,8 @@ Notes:
 Dep. Variable:                 return   R-squared:                       0.000
 Model:                            OLS   Adj. R-squared:                 -0.009
 Method:                 Least Squares   F-statistic:                  0.004231
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):               1.00
-Time:                        21:56:20   Log-Likelihood:                 393.01
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):               1.00
+Time:                        06:22:28   Log-Likelihood:                 393.01
 No. Observations:                 326   AIC:                            -778.0
 Df Residuals:                     322   BIC:                            -762.9
 Df Model:                           3                                         
@@ -82,8 +82,8 @@ Notes:
 Dep. Variable:             volatility   R-squared:                       0.006
 Model:                            OLS   Adj. R-squared:                 -0.003
 Method:                 Least Squares   F-statistic:                    0.6841
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):              0.562
-Time:                        21:56:20   Log-Likelihood:                 1075.0
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.562
+Time:                        06:22:28   Log-Likelihood:                 1075.0
 No. Observations:                 326   AIC:                            -2142.
 Df Residuals:                     322   BIC:                            -2127.
 Df Model:                           3                                         
@@ -109,8 +109,8 @@ Notes:
 Dep. Variable:                 return   R-squared:                       0.387
 Model:                            OLS   Adj. R-squared:                  0.383
 Method:                 Least Squares   F-statistic:                     96.12
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           4.26e-33
-Time:                        21:56:20   Log-Likelihood:                 445.11
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           4.26e-33
+Time:                        06:22:28   Log-Likelihood:                 445.11
 No. Observations:                 308   AIC:                            -884.2
 Df Residuals:                     305   BIC:                            -873.0
 Df Model:                           2                                         
@@ -139,8 +139,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                     BP   R-squared:                       0.268
 Model:                            OLS   Adj. R-squared:                  0.263
 Method:                 Least Squares   F-statistic:                     55.79
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           2.26e-21
-Time:                        21:56:20   Log-Likelihood:                 411.02
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           2.26e-21
+Time:                        06:22:28   Log-Likelihood:                 411.02
 No. Observations:                 308   AIC:                            -816.0
 Df Residuals:                     305   BIC:                            -804.9
 Df Model:                           2                                         
@@ -169,8 +169,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                   SHEL   R-squared:                       0.273
 Model:                            OLS   Adj. R-squared:                  0.269
 Method:                 Least Squares   F-statistic:                     57.38
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           7.04e-22
-Time:                        21:56:20   Log-Likelihood:                 451.38
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           7.04e-22
+Time:                        06:22:28   Log-Likelihood:                 451.38
 No. Observations:                 308   AIC:                            -896.8
 Df Residuals:                     305   BIC:                            -885.6
 Df Model:                           2                                         
@@ -199,8 +199,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                    XOM   R-squared:                       0.231
 Model:                            OLS   Adj. R-squared:                  0.226
 Method:                 Least Squares   F-statistic:                     45.79
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           4.08e-18
-Time:                        21:56:20   Log-Likelihood:                 453.69
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           4.08e-18
+Time:                        06:22:28   Log-Likelihood:                 453.69
 No. Observations:                 308   AIC:                            -901.4
 Df Residuals:                     305   BIC:                            -890.2
 Df Model:                           2                                         
@@ -229,8 +229,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                    CVX   R-squared:                       0.248
 Model:                            OLS   Adj. R-squared:                  0.243
 Method:                 Least Squares   F-statistic:                     50.29
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           1.33e-19
-Time:                        21:56:20   Log-Likelihood:                 442.40
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           1.33e-19
+Time:                        06:22:28   Log-Likelihood:                 442.40
 No. Observations:                 308   AIC:                            -878.8
 Df Residuals:                     305   BIC:                            -867.6
 Df Model:                           2                                         
@@ -257,8 +257,8 @@ strong multicollinearity or other numerical problems.
 Dep. Variable:                 return   R-squared:                       0.575
 Model:                            OLS   Adj. R-squared:                  0.571
 Method:                 Least Squares   F-statistic:                     137.1
-Date:                Sun, 25 Oct 2026   Prob (F-statistic):           3.38e-56
-Time:                        21:56:21   Log-Likelihood:                 501.64
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           3.38e-56
+Time:                        06:22:29   Log-Likelihood:                 501.64
 No. Observations:                 308   AIC:                            -995.3
 Df Residuals:                     304   BIC:                            -980.4
 Df Model:                           3                                         

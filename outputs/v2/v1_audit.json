@@ -1,5 +1,7 @@
 {
   "status": "PARTIAL_REPRODUCTION_CURRENT_VENDOR_VINTAGE",
+  "frozen_base_commit": "89b692ca5cb6412a283a82c7a55c33fceb6412f4",
+  "matches_frozen_base": true,
   "original_hashes": {
     "notebooks/analysis.ipynb": "5c1852029184489ca1a9834172f9a20ddaba01abfab1e18900357d2f4f72ff74",
     "data/processed/xle_monthly.csv": "76c515f26379d744c1bf316f065eea61fc2054109fce7e0b27eca610f442ea41",

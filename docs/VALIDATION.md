@@ -1,6 +1,6 @@
 # Validation scope
 
-**Share with caveats. Completeness: partial historical reproduction; implemented V2 association workflow.** Repairs were made on a branch. Totals below are scoped inventory counts, not an overall accuracy score; 0/N means no remaining demonstrated defect, not complete source authentication.
+**Review-ready exploratory implementation; not ready for confirmatory, causal or forecasting claims. Completeness: partial historical reproduction.** Repairs were made on a branch. Totals below are scoped inventory counts, not an overall accuracy score; 0/N means no remaining demonstrated defect, not complete source authentication.
 
 Inventory: four focal input series (XLE, CL=F, S&P 500, GPR); three consequential calculation groups (V1 replay, V2 model comparisons, scenarios); one new coefficient chart; three narrative claims (oil/market association, uncertain GPR association, no established mediation). V1 company/volatility/extreme-GPR analyses were code-replayed but not promoted as V2 claims. Interactive dashboard behavior is out of scope.
 
@@ -16,14 +16,16 @@ Inventory: four focal input series (XLE, CL=F, S&P 500, GPR); three consequentia
 
 | Category | Observed defects | Assessment |
 |---|---|---|
-| Source authority/confidence | 0 / 4 | Current vendor fields and retained workbook inspected; original-vintage authentication unavailable for all four inputs. No official exchange/issuer reconstruction claimed. |
+| Source authority/confidence | 0 / 4 | Current vendor fields and retained workbook inspected; current cache settings/schema and original-commit fingerprints now enforced; original-vintage authentication unavailable for all four inputs. No official exchange/issuer reconstruction claimed. |
 | Value accuracy | 0 / 3 | Archived return identity and simple regression verified; full notebook replay approximate; OLS/HAC independently tested on synthetic data; scenario conversion tested. |
 | Within-chart agreement | 0 / 1 | Chart uses exported common-sample HAC(6) coefficients and intervals; units differ and are labeled. |
 | Complete source details | 0 / 4 | Known source choices, dates and hashes recorded; missing historical acquisition evidence explicitly marked unknown. |
 | Cross-artifact consistency | 0 / 3 | README/report, coefficient chart/table and replay/archive comparisons reconciled. |
-| Data-quality controls | 0 / 4 | Calendar grid, duplicate dates, GPR coverage, missing/nonpositive endpoints and actual source dates checked. Three oil/equity endpoint differences retained and tested. No complete exchange-holiday audit. |
+| Data-quality controls | 0 / 4 | Calendar grid, duplicate dates, GPR coverage, stale/missing/nonpositive endpoints and actual source dates checked; fixed comparison window cannot shrink silently. Three oil/equity endpoint differences retained and tested. No complete exchange-holiday audit. |
 | Conclusion support | 0 / 3 | Conditional associations reported; mechanism and zero-effect conclusions withdrawn. No forecast validation asserted. |
 
-Focused validation: 16 tests passed in a fresh Python 3.14.4 environment; all 33 original code cells ran with documented cache substitution. V1 notebook/data/output checksums stayed unchanged. The new plot was visually inspected. Generated console logs include timestamps; deterministic numeric outputs are checked separately. GitHub CI status is reported at PR handoff rather than assumed here.
+Focused validation: 33 tests passed in a fresh Python 3.14.4 environment; all 33 original code cells ran with documented cache substitution. V1 notebook/data/output checksums stayed unchanged. The new plot was visually inspected. Generated console logs include timestamps; deterministic numeric outputs are checked separately. GitHub CI status is reported at PR handoff rather than assumed here.
 
 Prioritized unresolved problems and remedies are in [FINDINGS_V2.md](FINDINGS_V2.md). A passing software check does not authenticate a missing historical source or establish causality.
+
+The initial matrix is a scoped defect inventory, not a source-authentication or release certificate. All four original historical input acquisition histories remain unverified. The new regression tests cover cache/settings/schema tampering, alteration before a replay, intraday GPR dates, stale endpoints, fixed-sample truncation, calendar HAC against two reference calculations, publication failure preservation, and synthetic daily-data-to-model integration. See [PR1_REVIEW.md](PR1_REVIEW.md) for the remaining gates.

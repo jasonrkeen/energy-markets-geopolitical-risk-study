@@ -23,3 +23,5 @@ Thumbs.db
 # New raw downloads stay local; original tracked V1 evidence remains unchanged.
 data/raw/
 outputs/v2/replay/
+outputs/.v2-stage-*/
+outputs/.v2-previous-*/

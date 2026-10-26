@@ -26,12 +26,14 @@ Use Python 3.14 in a virtual environment, from repository root:
 python -m pip install -r requirements-lock.txt
 python main.py --fetch
 python -m pytest -q
-python main.py
+python main.py --verify-repeat
 ```
 
 The first command sequence downloads market inputs once; subsequent pipeline runs use the checksum-verified local cache. A fresh download may contain vendor revisions. Raw new downloads are ignored by Git. Exact same-vintage reproduction requires the retained local cache. `requirements.txt` lists direct pins; `requirements-lock.txt` records the tested clean environment, including transitive packages. The optional notebook interface is in `requirements-notebook.txt`.
 
 ## Review material
+
+[October 26 PR review and remaining blockers](docs/PR1_REVIEW.md): cache contracts, frozen input checks, stale endpoint rejection, fixed-sample enforcement, calendar-HAC crisis sensitivity and staged output publication have been added. The primary sample and coefficients are unchanged.
 
 - [Short findings and red-team report](docs/FINDINGS_V2.md)
 - [Methods, source references and reproduction boundaries](docs/METHODOLOGY_V2.md)

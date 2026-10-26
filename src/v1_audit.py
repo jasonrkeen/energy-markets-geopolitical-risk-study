@@ -1,5 +1,6 @@
 """Preserve V1; replay all code cells with a dated vendor cache in isolation."""
 import contextlib
+import hashlib
 import io
 import json
 import os
@@ -25,7 +26,19 @@ def summary(result) -> dict:
     return {"n": int(result.nobs), "r_squared": float(result.rsquared),
             "coefficients": result.params.to_dict(), "pvalues": result.pvalues.to_dict()}
 
+def verify_frozen_inputs(root: Path = ROOT) -> dict:
+    """Compare to the original Git commit, not merely to the start of this run."""
+    frozen = json.loads((root / "docs/v1/FROZEN_INPUTS.json").read_text())
+    for name, expected in frozen["files"].items():
+        data = (root / name).read_bytes()
+        if expected["normalize_lf"]:
+            data = data.replace(b"\r\n", b"\n")
+        if hashlib.sha256(data).hexdigest() != expected["sha256"]:
+            raise ValueError(f"Frozen V1 input differs from base commit: {name}")
+    return frozen
+
 def audit(market: pd.DataFrame, destination: Path) -> dict:
+    frozen = verify_frozen_inputs()
     original_hashes = {p: sha256(ROOT / p) for p in PRESERVED}
     archived = pd.read_csv(ROOT / "data/processed/xle_monthly.csv", index_col=0, parse_dates=True)
     gpr = monthly_gpr(read_gpr())
@@ -77,8 +90,12 @@ def audit(market: pd.DataFrame, destination: Path) -> dict:
     comparison = pd.DataFrame({"archived_return": archived["return"], "replay_return": replay_monthly["return"]})
     comparison["difference"] = comparison.replay_return - comparison.archived_return
     comparison.to_csv(destination / "v1_xle_return_deltas.csv")
+    if any(sha256(ROOT / p) != h for p, h in original_hashes.items()):
+        raise RuntimeError("V1 artifact changed during replay; output publication aborted")
     evidence = {
         "status": "PARTIAL_REPRODUCTION_CURRENT_VENDOR_VINTAGE",
+        "frozen_base_commit": frozen["base_commit"],
+        "matches_frozen_base": True,
         "original_hashes": original_hashes,
         "preserved_unchanged": all(sha256(ROOT / p) == h for p, h in original_hashes.items()),
         "cell_count": len(notebook["cells"]), "executed_cells": completed,

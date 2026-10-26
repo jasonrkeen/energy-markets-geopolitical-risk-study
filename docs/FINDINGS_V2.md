@@ -1,6 +1,6 @@
 # Version 2 findings and red-team report
 
-2026-10-25 local review. **Share with caveats for exploratory association research; exact historical reproduction remains partial.** Base commit: `89b692ca5cb6412a283a82c7a55c33fceb6412f4`. Original notebook, retained data and V1 outputs were preserved; corrections are on a review branch.
+2026-10-25 initial review; revised after implementation review on 2026-10-26. See [PR1_REVIEW.md](PR1_REVIEW.md). **Share with caveats for exploratory association research; exact historical reproduction remains partial.** Base commit: `89b692ca5cb6412a283a82c7a55c33fceb6412f4`. Original notebook, retained data and V1 outputs were preserved; corrections are on a review branch.
 
 ## What was reproduced
 
@@ -18,7 +18,7 @@ On that common sample, the XLE model has **R² 0.589227**. HAC(6) oil beta is **
 - The GPR–oil regression controlling for market return gives p=**0.8405**. Lagged-only joint GPR tests give p=**0.7385** for oil and **0.7376** for XLE. These are in-sample associations, not validated forecast tests.
 - One contemporaneous GPR coefficient in the dynamic XLE model has an unadjusted p=**0.0123**, but its joint three-term GPR test is p=**0.0705**. None of eleven HAC(6) joint GPR tests rejects at 5% after Holm correction (smallest adjusted p≈0.551). Reporting only the individual significant term would misrepresent the evidence.
 - Oil/equity month-end source dates differ in November 2002, November 2003 and December 2004. Requiring the same last available date produces oil beta **0.322211**, market beta **0.777754**, GPR p=**0.0618**, and R² **0.588733**. This small numerical difference does not establish identical trading calendars or synchronous intraday pricing.
-- Excluding March–June 2020 gives oil beta **0.3698**, market beta **0.7123**, GPR p=**0.1570**, using HC3 on 302 observations. This illustrates sensitivity to the crisis window; it is not a preferred result selected after inspecting significance.
+- Excluding March–June 2020 gives oil beta **0.3698**, market beta **0.7123**, GPR p=**0.1570**, using HC3 on 302 observations. Calendar-HAC(6), added in the review to address actual monthly lag distances, gives GPR p=**0.05855** with the same coefficients and sample. This illustrates sensitivity to the crisis window; it is not a preferred result selected after inspecting significance.
 - Residual Ljung–Box lag-12 p=**0.0171** indicates remaining serial dependence. HAC addresses uncertainty under its assumptions, not omitted dynamics, instability or identification.
 
 ## Red-team findings and remedies

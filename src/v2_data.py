@@ -14,10 +14,19 @@ CACHE = ROOT / "data/raw/v2/yahoo_daily.csv"
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+def content_hash(path: Path) -> str:
+    """Portable artifact hash; raw input cache still uses strict byte hashing."""
+    payload = path.read_bytes()
+    if path.suffix in {".csv", ".json", ".txt", ".py", ".md"}:
+        payload = payload.replace(b"\r\n", b"\n")
+    return hashlib.sha256(payload).hexdigest()
+
 def fetch() -> None:
     """Fetch once. Existing receipts are immutable; move cache to refresh explicitly."""
     import yfinance as yf
     receipt = CACHE.with_suffix(".json")
+    if CACHE.exists() != receipt.exists():
+        raise ValueError("Orphaned market cache or receipt; preserve and reconcile both before fetching")
     if receipt.exists():
         read_market()
         return
@@ -44,10 +53,26 @@ def fetch() -> None:
 
 def read_market() -> pd.DataFrame:
     receipt = json.loads(CACHE.with_suffix(".json").read_text())
+    expected = {"start": CONFIG.start, "end_exclusive": CONFIG.end_exclusive,
+                "tickers": list(CONFIG.tickers), "auto_adjust": False,
+                "back_adjust": False, "repair": False, "actions": True, "keepna": True}
+    for key, value in expected.items():
+        if key not in receipt or receipt[key] != value:
+            raise ValueError(f"Market receipt/config mismatch: {key}")
     if receipt["sha256"] != sha256(CACHE):
         raise ValueError("Market cache checksum mismatch")
     frame = pd.read_csv(CACHE, header=[0, 1], index_col=0, parse_dates=True)
     validate_dates(frame.index)
+    if frame.empty or frame.index.min() < pd.Timestamp(CONFIG.start) or frame.index.max() >= pd.Timestamp(CONFIG.end_exclusive):
+        raise ValueError("Market dates outside requested interval or empty")
+    for ticker in CONFIG.tickers:
+        for field in ["Close", "Adj Close", "Open", "High", "Low"]:
+            key = (field, ticker)
+            if key not in frame or frame[key].dropna().empty:
+                raise ValueError(f"Missing market field: {key}")
+            values = frame[key].dropna().to_numpy(dtype=float)
+            if not np.isfinite(values).all():
+                raise ValueError(f"Nonfinite market field: {key}")
     return frame
 
 def validate_dates(index: pd.DatetimeIndex) -> None:
@@ -55,6 +80,8 @@ def validate_dates(index: pd.DatetimeIndex) -> None:
         raise ValueError("Dates must be unique, nonmissing timestamps")
     if not index.is_monotonic_increasing:
         raise ValueError("Dates must be sorted")
+    if index.tz is not None or not index.equals(index.normalize()):
+        raise ValueError("Daily dates must be timezone-naive midnight calendar dates")
 
 def log_returns(prices: pd.Series) -> pd.Series:
     """No fill or bridging missing calendar months; invalid endpoints stay missing."""
@@ -62,15 +89,19 @@ def log_returns(prices: pd.Series) -> pd.Series:
         raise ValueError("Infinite prices")
     return np.log(prices.where(prices > 0)).diff()
 
-def monthly_prices(daily: pd.Series) -> pd.DataFrame:
+def monthly_prices(daily: pd.Series, max_age_days: int = CONFIG.max_endpoint_age_days) -> pd.DataFrame:
     validate_dates(daily.index)
     valid = daily.dropna()
     if valid.empty:
         raise ValueError("Empty price series")
     price = valid.resample("ME").last()
     dates = pd.Series(valid.index, index=valid.index).resample("ME").last()
-    return pd.DataFrame({"price": price, "source_date": dates,
-                         "return": log_returns(price)})
+    age = (price.index.to_series() - dates).dt.days
+    # A declared tolerance is not an exchange calendar. Flag, never backfill, stale endpoints.
+    accepted = price.where(age <= max_age_days)
+    return pd.DataFrame({"price": accepted, "observed_price": price, "source_date": dates,
+                         "endpoint_age_days": age, "stale_endpoint": age > max_age_days,
+                         "return": log_returns(accepted)})
 
 def monthly_gpr(daily: pd.Series) -> pd.DataFrame:
     validate_dates(daily.index)
@@ -97,6 +128,7 @@ def build_panel(market: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
         monthly = monthly_prices(market[field][ticker])
         panel[name] = monthly["return"]
         panel[name + "_date"] = monthly["source_date"]
+        panel[name + "_stale"] = monthly["stale_endpoint"].reindex(index, fill_value=False)
         if name == "oil":
             panel["oil_dollars"] = monthly.price.diff()
     panel["gpr100"] = gpr.gpr.where(gpr.complete) / 100
@@ -112,5 +144,4 @@ def common_date_returns(market: pd.DataFrame) -> pd.DataFrame:
     daily = pd.DataFrame({"xle": market["Adj Close"]["XLE"],
                           "oil": market["Close"]["CL=F"],
                           "market": market["Close"]["^GSPC"]}).dropna()
-    prices = daily.resample("ME").last()
-    return prices.apply(log_returns)
+    return pd.DataFrame({name: monthly_prices(daily[name])["return"] for name in daily})

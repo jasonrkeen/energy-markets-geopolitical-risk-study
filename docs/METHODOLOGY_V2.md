@@ -1,6 +1,6 @@
 # Version 2 methodology and reproduction contract
 
-Scope fixed on 2026-10-25 (America/Chicago). This is a retrospective, exploratory association study, not a trading model or causal mediation analysis. No random simulation is used in estimation. Synthetic tests use seed 20261025.
+Scope fixed on 2026-10-25 (America/Chicago); implementation review 2026-10-26. This is a retrospective, exploratory association study, not a trading model or causal mediation analysis. No random simulation is used in estimation. Synthetic tests use seed 20261025.
 
 ## Evidence and vintages
 
@@ -19,14 +19,14 @@ The retained workbook identifies GPRD as “Daily GPR (Index: 1985:2019=100)” 
 
 ## Calendar, returns, and sample
 
-1. Preserve original notebook, data and three output files byte-for-byte. SHA-256 checks appear in `v1_audit.json`; the old README is copied to `docs/v1/README.md`.
+1. Preserve original notebook, data and three output files byte-for-byte. Original-commit content checks (LF-normalized for text only) are frozen in `docs/v1/FROZEN_INPUTS.json`; pre/post-run byte checks appear in `v1_audit.json`; the old README is copied to `docs/v1/README.md`.
 2. Run all 33 original code cells in a separate sandbox. Substitute cached Yahoo data ending April 28, 2026 and infer `auto_adjust=True` where omitted; this is a documented reconstruction. Tail-expression rich displays are not reproduced by `exec`; saved charts and printed summaries are regenerated. A normal notebook kernel execution against the original, missing downloads is not claimed.
 3. Retain actual last valid trading date for each calendar month, then compute `log(P_t) - log(P_(t-1))`. Empty months are explicit, no forward fill, and lags are computed on the complete monthly calendar before dropping rows. GPR must have every calendar day; partial months are excluded.
-4. V2 ends March 31, 2026. The workbook has only 27 April days, while V1's market data included April 28. Relabeling partial data as April 30 does not complete April. Market downloads contain full April only to support auditing; April is excluded from every V2 estimation.
+4. V2 ends March 31, 2026. The comparison window is fixed in config; missing required rows now stop the run instead of shrinking it. The workbook has only 27 April days, while V1's market data included April 28. Relabeling partial data as April 30 does not complete April. Market downloads contain full April only to support auditing; April is excluded from every V2 estimation.
 5. CL=F begins August 23, 2000 in the fresh download. September 2000 is the first month-end price change. V1 reconstructed sample: September 2000–April 2026, 308 rows. Completed-month baseline: September 2000–March 2026, 307 rows. Shared sample across comparison specifications: October 2000–March 2026, 306 rows because one lag of the oil change is needed. Inclusion/missingness is recorded per month in `sample_ledger.csv`.
-6. `endpoint_audit.csv` records calendar-day distance from month end and equity/oil date agreement. This is an observed endpoint audit, not a complete exchange-holiday verification. A future input with a long outage requires inspection before analytical promotion; the current panel's endpoints were checked.
+6. `endpoint_audit.csv` records calendar-day distance from month end and equity/oil date agreement. Endpoints more than four calendar days before month end are marked stale and invalidate both adjacent returns; the fixed-window model then fails on missing rows. The four-day tolerance reflects this inspected sample and is a declared quality screen, not an independently verified exchange calendar. It can miss outages within four days and does not verify every trading session. Common-date sensitivities apply the same guard.
 
-Nonpositive price endpoints invalidate both adjacent log changes; they are never clipped, absolutized or replaced with an arbitrary epsilon. The negative daily WTI observation on April 20, 2020 is retained in a separate audit. March and April month-end endpoints are positive, so the monthly log change exists. This does not repair roll discontinuities, collateral costs or the economic interpretation of the continuous ticker. Sensitivities use monthly dollar changes (different units) and exclude March–June 2020 using HC3, without pretending a gapped sample is equally spaced for HAC.
+Nonpositive price endpoints invalidate both adjacent log changes; they are never clipped, absolutized or replaced with an arbitrary epsilon. The negative daily WTI observation on April 20, 2020 is retained in a separate audit. March and April month-end endpoints are positive, so the monthly log change exists. This does not repair roll discontinuities, collateral costs or the economic interpretation of the continuous ticker. Sensitivities use monthly dollar changes (different units) and exclude March–June 2020 using HC3 and an additional calendar-HAC(6) covariance, without treating adjacent retained rows as adjacent months.
 
 ## Estimation and inference
 
@@ -34,7 +34,7 @@ Baseline: XLE log return on intercept, GPR/100, oil-proxy log change and S&P 500
 
 All eleven comparison specifications are in `SPECS`, estimated on the identical 306-row sample. They include GPR–oil with a market control; contemporaneous plus one/two GPR lags with market and own-return controls; lagged-only XLE and oil equations; log-GPR-change alternatives; adjusted versus close XLE; and dollar-change oil sensitivity. Contemporaneous controls can absorb shared shocks or condition on downstream variables. Coefficient changes when oil is included are not mediation estimates.
 
-Primary uncertainty: Bartlett Newey–West HAC with six monthly lags, finite-sample n/(n-k) correction and t-reference intervals. HAC(3), HAC(12) and HC3 are reported as sensitivity choices, not selected by favorable significance. HAC rejects gaps in the retained calendar sample. Eleven HAC(6) joint GPR tests receive Holm familywise adjustment; individual coefficient p-values and other covariance/sensitivity p-values remain unadjusted exploratory results. These models were developed after viewing V1, not prospectively preregistered. No rejection is not evidence of a zero effect.
+Primary uncertainty: Bartlett Newey–West HAC with six monthly lags, finite-sample n/(n-k) correction and t-reference intervals. HAC(3), HAC(12) and HC3 are reported as sensitivity choices, not selected by favorable significance. Standard HAC rejects gaps in the retained calendar sample. The separately labeled calendarHAC6 sensitivity computes score cross-products by actual calendar-month distance (zero scores in omitted months, without imputing observations), uses a Bartlett kernel and observed n/(n-k) correction, and retains t-reference inference. It matches standard HAC on contiguous data and is checked against an independent pairwise calculation across gaps. Its weak-dependence/exogeneity assumptions remain unverified; this is not a remedy for endogenous crisis-window selection. Eleven HAC(6) joint GPR tests receive Holm familywise adjustment; individual coefficient p-values and other covariance/sensitivity p-values remain unadjusted exploratory results. These models were developed after viewing V1, not prospectively preregistered. No rejection is not evidence of a zero effect.
 
 Residual diagnostics and Cook's distance/leverage are exported for follow-up; they do not validate identification or stability. Lagged regressors establish temporal ordering in the calendar only: unrecovered release vintages, endogeneity and common shocks still preclude causal or real-time predictive claims. There is no out-of-sample forecast evaluation.
 
@@ -52,10 +52,10 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 python main.py --fetch
 python -m pytest -q
-python main.py
+python main.py --verify-repeat
 ```
 
-First fetch stores daily data and a checksum receipt in ignored `data/raw/v2/`. Subsequent runs are offline and reject a changed cache. To refresh, deliberately move BOTH cache and receipt elsewhere first; preserve the old manifest and outputs as a separate vintage. Raw downloads are not added to Git. For exact same-vintage replication use the delivered local evidence bundle; a new clone's fetch can differ. Numerical results are deterministic for a given cache/environment; replay console summaries contain execution date/time and are not byte-stable. Optional `requirements-notebook.txt` installs Jupyter for inspecting the preserved notebook; executing it directly can overwrite V1 outputs and fetch unbounded current data, so use `main.py` for reproduction.
+First fetch stores daily data and a checksum receipt in ignored `data/raw/v2/`. Subsequent runs are offline and reject a changed cache, incompatible request settings, missing required fields or nonfinite prices. An orphaned cache/receipt pair is preserved and rejected, never silently overwritten. To refresh, deliberately move BOTH cache and receipt elsewhere first; preserve the old manifest and outputs as a separate vintage. Raw downloads are not added to Git. For exact same-vintage replication use the delivered local evidence bundle; a new clone's fetch can differ. Runs stage all outputs before publication and retain the previous directory under ignored `outputs/.v2-previous-*`. Calculation failure leaves published outputs untouched; a publication rename failure attempts rollback. This is a single-writer workflow, not a concurrent-run/crash-recovery service. `--verify-repeat` runs the full workflow twice and writes a fresh comparison receipt only if all numerical CSV hashes match. An ordinary run contains no repeat-validation receipt. The manifest hashes top-level output artifacts (excluding itself), normalizing CRLF to LF in text artifacts for Git/platform portability. Repeat comparison uses the same normalization; raw market-cache SHA256 still checks exact bytes. Numerical results are deterministic for a given cache/environment; replay console summaries contain execution date/time and are not byte-stable. Optional `requirements-notebook.txt` installs Jupyter for inspecting the preserved notebook; executing it directly can overwrite V1 outputs and fetch unbounded current data, so use `main.py` for reproduction.
 
 ## Primary references (accessed 2026-10-25 local)
 
@@ -67,3 +67,5 @@ First fetch stores daily data and a checksum receipt in ignored `data/raw/v2/`. 
 - EIA, April 27, 2020, negative WTI futures and storage: https://www.eia.gov/todayinenergy/detail.php?id=43495
 
 Use provider data subject to its terms; no redistribution rights or official-source status are inferred from availability through yfinance.
+
+Review scope and remaining release limits: [PR1_REVIEW.md](PR1_REVIEW.md). The scenario table now separately labels `fitted_log_return` and `simple_equivalent_return`; transformed mean-log confidence limits are not arithmetic-return mean or prediction intervals.
