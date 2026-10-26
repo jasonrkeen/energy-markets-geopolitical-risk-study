@@ -9,6 +9,7 @@ dist/
 # Environments / secrets
 .env
 .venv/
+.venv-*/
 venv/
 env/
 .streamlit/secrets.toml
@@ -19,3 +20,8 @@ env/
 Thumbs.db
 .vscode/
 .idea/
+# New raw downloads stay local; original tracked V1 evidence remains unchanged.
+data/raw/
+outputs/v2/replay/
+outputs/.v2-stage-*/
+outputs/.v2-previous-*/

@@ -1,7 +1,9 @@
-pandas>=2.0
-numpy>=1.24
-matplotlib>=3.7
-statsmodels>=0.14
-yfinance>=0.2
-jupyter>=1.0
-openpyxl>=3.1
+# Tested with Python 3.14.4; direct dependencies pinned.
+pandas==3.0.2
+numpy==2.4.4
+scipy==1.17.1
+matplotlib==3.10.8
+statsmodels==0.14.6
+yfinance==1.2.2
+xlrd==2.0.2
+pytest==9.1.1

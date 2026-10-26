@@ -1,0 +1,18 @@
+{
+  "offline_numeric_csvs_identical": true,
+  "csv_count": 11,
+  "hash_scheme": "SHA256 after CRLF-to-LF normalization",
+  "sha256": {
+    "coefficients.csv": "efc949d927fdd66bcf1980fb68e6582fa1e362fb51cfbaebbd9e8f40b77b3145",
+    "conditional_scenarios.csv": "411a0fb9c77c5538d856f31d17f73b9ff2935aa130bbfcd3da72bbcbd481f1e5",
+    "endpoint_audit.csv": "1878bda3c73ecab0db46db2e3d400a64e8b820c057fb03c5725c5f4954f7131f",
+    "gpr_coverage.csv": "a504cfb8e582c0fbb9bdec5918e063f722ed06ec7cfb7674929ee08a5559004e",
+    "influence.csv": "17c34c933928665df7b9ea3209d402efc8c0a0c8a6e0cd8fcaa484294c3684b3",
+    "joint_gpr_tests.csv": "e34ed6a6c4a62c100cab263522dbcb18183d63e612fee6b3d079cb8643e37b0e",
+    "monthly_panel.csv": "2c9a224a45d16c48e2e7ef7254771f7e24ea5079d125a6dec053e546d2a6fe3c",
+    "nonpositive_daily_oil.csv": "8802243779ed7418666b306d5a8b49bcc5f47863f0e2f43e1421ddeb625d7593",
+    "sample_ledger.csv": "57af4c107d290d8be7b8681be6958559d4623e1b2452acc443d8d8799460139d",
+    "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
+    "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b"
+  }
+}

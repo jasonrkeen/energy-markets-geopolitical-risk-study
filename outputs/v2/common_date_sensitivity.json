@@ -1,0 +1,18 @@
+{
+  "n": 306,
+  "r_squared": 0.588732781658253,
+  "coefficients": {
+    "const": -0.007014904098406569,
+    "gpr100": 0.007722262031926859,
+    "oil": 0.3222106105379533,
+    "market": 0.777754016985436
+  },
+  "pvalues": {
+    "const": 0.18613512641497865,
+    "gpr100": 0.06177086991060389,
+    "oil": 4.499734927841644e-11,
+    "market": 9.903193627950864e-16
+  },
+  "covariance": "HAC6",
+  "definition": "Last date in each month with all three market quotes; GPR still full calendar-month mean. Same 306 months."
+}

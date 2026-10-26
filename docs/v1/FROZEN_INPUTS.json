@@ -1,0 +1,29 @@
+{
+  "base_commit": "89b692ca5cb6412a283a82c7a55c33fceb6412f4",
+  "files": {
+    "notebooks/analysis.ipynb": {
+      "sha256": "5af331558ed9ff257e45a54c290b85b829898a74cff98b2d750e9fe02f268622",
+      "normalize_lf": true
+    },
+    "data/processed/xle_monthly.csv": {
+      "sha256": "bed92069487593e9292ba29835f7df85da5ac1b4819cc59469497629cacbec38",
+      "normalize_lf": true
+    },
+    "data/raw/data_gpr_daily_recent.xls": {
+      "sha256": "b77dc72915b7ca73f2d2278057388426fa147f7bc8f93adc5ebf7cb2f8e8c251",
+      "normalize_lf": false
+    },
+    "outputs/charts/oil_betas.png": {
+      "sha256": "cdd618500d79ca1a4bf7411ea12814b54e2ef23e9a3fd4125acff3c2c055bdb2",
+      "normalize_lf": false
+    },
+    "outputs/charts/xle_vs_oil.png": {
+      "sha256": "b090cba2c4478e4e56c72aa76d7a2ee4bb23168e0036e548a92a2555ecd25d69",
+      "normalize_lf": false
+    },
+    "outputs/tables/xle_scenario_forecast.csv": {
+      "sha256": "6f340f3a8a90abc66b3855c4f58456c564718188c4242c22843d47e78f0eca2e",
+      "normalize_lf": true
+    }
+  }
+}

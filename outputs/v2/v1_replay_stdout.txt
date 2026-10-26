@@ -1,0 +1,284 @@
+Libraries loaded successfully
+Saved monthly XLE dataset to data/processed/xle_monthly.csv
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 return   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                 -0.003
+Method:                 Least Squares   F-statistic:                  0.009311
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.923
+Time:                        06:22:28   Log-Likelihood:                 395.86
+No. Observations:                 328   AIC:                            -787.7
+Df Residuals:                     326   BIC:                            -780.1
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0062      0.009      0.668      0.505      -0.012       0.025
+gpr         7.568e-06   7.84e-05      0.096      0.923      -0.000       0.000
+==============================================================================
+Omnibus:                       53.618   Durbin-Watson:                   2.099
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              259.797
+Skew:                          -0.552   Prob(JB):                     3.85e-57
+Kurtosis:                       7.218   Cond. No.                         276.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             volatility   R-squared:                       0.005
+Model:                            OLS   Adj. R-squared:                  0.002
+Method:                 Least Squares   F-statistic:                     1.750
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.187
+Time:                        06:22:28   Log-Likelihood:                 1082.4
+No. Observations:                 328   AIC:                            -2161.
+Df Residuals:                     326   BIC:                            -2153.
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0171      0.001     14.904      0.000       0.015       0.019
+gpr         -1.28e-05   9.67e-06     -1.323      0.187   -3.18e-05    6.23e-06
+==============================================================================
+Omnibus:                      297.448   Durbin-Watson:                   0.691
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7393.268
+Skew:                           3.739   Prob(JB):                         0.00
+Kurtosis:                      25.024   Cond. No.                         276.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 return   R-squared:                       0.000
+Model:                            OLS   Adj. R-squared:                 -0.009
+Method:                 Least Squares   F-statistic:                  0.004231
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):               1.00
+Time:                        06:22:28   Log-Likelihood:                 393.01
+No. Observations:                 326   AIC:                            -778.0
+Df Residuals:                     322   BIC:                            -762.9
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0070      0.011      0.649      0.517      -0.014       0.028
+gpr          1.06e-05      0.000      0.092      0.927      -0.000       0.000
+gpr_lag1   -1.576e-05      0.000     -0.106      0.915      -0.000       0.000
+gpr_lag2    7.952e-06      0.000      0.067      0.947      -0.000       0.000
+==============================================================================
+Omnibus:                       54.229   Durbin-Watson:                   2.093
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              262.646
+Skew:                          -0.565   Prob(JB):                     9.27e-58
+Kurtosis:                       7.250   Cond. No.                         534.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             volatility   R-squared:                       0.006
+Model:                            OLS   Adj. R-squared:                 -0.003
+Method:                 Least Squares   F-statistic:                    0.6841
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):              0.562
+Time:                        06:22:28   Log-Likelihood:                 1075.0
+No. Observations:                 326   AIC:                            -2142.
+Df Residuals:                     322   BIC:                            -2127.
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0175      0.001     13.120      0.000       0.015       0.020
+gpr        -1.011e-05   1.43e-05     -0.708      0.480   -3.82e-05     1.8e-05
+gpr_lag1   -1.139e-06   1.83e-05     -0.062      0.950   -3.71e-05    3.48e-05
+gpr_lag2   -4.896e-06   1.47e-05     -0.333      0.739   -3.38e-05     2.4e-05
+==============================================================================
+Omnibus:                      295.892   Durbin-Watson:                   0.691
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             7352.991
+Skew:                           3.739   Prob(JB):                         0.00
+Kurtosis:                      25.032   Cond. No.                         534.
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 return   R-squared:                       0.387
+Model:                            OLS   Adj. R-squared:                  0.383
+Method:                 Least Squares   F-statistic:                     96.12
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           4.26e-33
+Time:                        06:22:28   Log-Likelihood:                 445.11
+No. Observations:                 308   AIC:                            -884.2
+Df Residuals:                     305   BIC:                            -873.0
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0007      0.008      0.093      0.926      -0.014       0.016
+gpr         3.779e-05   6.33e-05      0.597      0.551   -8.68e-05       0.000
+wti_return     0.4135      0.030     13.864      0.000       0.355       0.472
+==============================================================================
+Omnibus:                       32.822   Durbin-Watson:                   2.385
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              160.792
+Skew:                           0.180   Prob(JB):                     1.21e-35
+Kurtosis:                       6.521   Cond. No.                     1.11e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.11e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+=== BP ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                     BP   R-squared:                       0.268
+Model:                            OLS   Adj. R-squared:                  0.263
+Method:                 Least Squares   F-statistic:                     55.79
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           2.26e-21
+Time:                        06:22:28   Log-Likelihood:                 411.02
+No. Observations:                 308   AIC:                            -816.0
+Df Residuals:                     305   BIC:                            -804.9
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0063      0.009     -0.732      0.465      -0.023       0.011
+gpr         4.052e-05   7.07e-05      0.573      0.567   -9.86e-05       0.000
+wti_return     0.3518      0.033     10.559      0.000       0.286       0.417
+==============================================================================
+Omnibus:                       71.273   Durbin-Watson:                   2.234
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              497.267
+Skew:                          -0.726   Prob(JB):                    1.05e-108
+Kurtosis:                       9.053   Cond. No.                     1.11e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.11e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+=== SHEL ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                   SHEL   R-squared:                       0.273
+Model:                            OLS   Adj. R-squared:                  0.269
+Method:                 Least Squares   F-statistic:                     57.38
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           7.04e-22
+Time:                        06:22:28   Log-Likelihood:                 451.38
+No. Observations:                 308   AIC:                            -896.8
+Df Residuals:                     305   BIC:                            -885.6
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0008      0.008     -0.113      0.910      -0.016       0.014
+gpr         8.109e-06    6.2e-05      0.131      0.896      -0.000       0.000
+wti_return     0.3130      0.029     10.711      0.000       0.256       0.371
+==============================================================================
+Omnibus:                       18.788   Durbin-Watson:                   2.236
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               30.712
+Skew:                          -0.392   Prob(JB):                     2.14e-07
+Kurtosis:                       4.333   Cond. No.                     1.11e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.11e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+=== XOM ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    XOM   R-squared:                       0.231
+Model:                            OLS   Adj. R-squared:                  0.226
+Method:                 Least Squares   F-statistic:                     45.79
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           4.08e-18
+Time:                        06:22:28   Log-Likelihood:                 453.69
+No. Observations:                 308   AIC:                            -901.4
+Df Residuals:                     305   BIC:                            -890.2
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0020      0.007     -0.264      0.792      -0.017       0.013
+gpr         4.753e-05   6.16e-05      0.772      0.441   -7.36e-05       0.000
+wti_return     0.2772      0.029      9.557      0.000       0.220       0.334
+==============================================================================
+Omnibus:                       21.165   Durbin-Watson:                   2.077
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               55.907
+Skew:                           0.246   Prob(JB):                     7.24e-13
+Kurtosis:                       5.029   Cond. No.                     1.11e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.11e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+=== CVX ===
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                    CVX   R-squared:                       0.248
+Model:                            OLS   Adj. R-squared:                  0.243
+Method:                 Least Squares   F-statistic:                     50.29
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           1.33e-19
+Time:                        06:22:28   Log-Likelihood:                 442.40
+No. Observations:                 308   AIC:                            -878.8
+Df Residuals:                     305   BIC:                            -867.6
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const      -1.558e-05      0.008     -0.002      0.998      -0.015       0.015
+gpr         3.453e-05   6.39e-05      0.541      0.589   -9.11e-05       0.000
+wti_return     0.3017      0.030     10.026      0.000       0.242       0.361
+==============================================================================
+Omnibus:                       19.283   Durbin-Watson:                   2.308
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               58.710
+Skew:                           0.069   Prob(JB):                     1.78e-13
+Kurtosis:                       5.134   Cond. No.                     1.11e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.11e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 return   R-squared:                       0.575
+Model:                            OLS   Adj. R-squared:                  0.571
+Method:                 Least Squares   F-statistic:                     137.1
+Date:                Mon, 26 Oct 2026   Prob (F-statistic):           3.38e-56
+Time:                        06:22:29   Log-Likelihood:                 501.64
+No. Observations:                 308   AIC:                            -995.3
+Df Residuals:                     304   BIC:                            -980.4
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+================================================================================
+                   coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const           -0.0035      0.006     -0.545      0.586      -0.016       0.009
+gpr           4.468e-05   5.28e-05      0.847      0.398   -5.92e-05       0.000
+wti_return       0.3230      0.026     12.396      0.000       0.272       0.374
+sp500_return     0.7518      0.065     11.612      0.000       0.624       0.879
+==============================================================================
+Omnibus:                       29.082   Durbin-Watson:                   2.176
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              114.000
+Skew:                           0.227   Prob(JB):                     1.76e-25
+Kurtosis:                       5.946   Cond. No.                     2.91e+03
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 2.91e+03. This might indicate that there are
+strong multicollinearity or other numerical problems.
+Saved scenario forecast to outputs/tables/xle_scenario_forecast.csv

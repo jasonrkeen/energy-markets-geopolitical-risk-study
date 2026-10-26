@@ -1,0 +1,1 @@
+"""Energy market research pipeline."""
