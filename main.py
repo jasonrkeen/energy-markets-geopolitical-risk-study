@@ -12,9 +12,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from src.official_sources import fetch_official, read_official, reconciliation
 from src.config import CONFIG, ROOT
 from src.v1_audit import audit
-from src.v2_data import CACHE, build_panel, common_date_returns, content_hash, fetch, read_market, sha256
+from src.v2_data import CACHE, build_panel, common_date_returns, content_hash, fetch, read_gpr, read_market, sha256
 from src.v2_models import estimate, fit, scenario_log_prediction
 from src.run_artifacts import staged_output
 
@@ -22,14 +23,15 @@ def run_pipeline(out: Path) -> dict:
     market = read_market()
     out.mkdir(parents=True, exist_ok=True)
     evidence = audit(market, out)
-    panel, gpr = build_panel(market)
+    spot, official, sources = read_official()
+    panel, gpr = build_panel(market, spot, official)
     coefficients, joint, ledger = estimate(panel)
     panel.to_csv(out / "monthly_panel.csv")
     gpr.to_csv(out / "gpr_coverage.csv")
     ledger.to_csv(out / "sample_ledger.csv")
     coefficients.to_csv(out / "coefficients.csv", index=False)
     joint.to_csv(out / "joint_gpr_tests.csv", index=False)
-    daily_oil = market["Close"]["CL=F"]
+    daily_oil = spot
     daily_oil.loc[daily_oil <= 0].to_csv(out / "nonpositive_daily_oil.csv")
     main_rows = coefficients.query("model == 'xle_full' and covariance == 'HAC6'")
     common = panel.loc[ledger.included_common]
@@ -45,20 +47,34 @@ def run_pipeline(out: Path) -> dict:
     pd.DataFrame({"cooks_distance": influence.cooks_distance[0],
                   "leverage": influence.hat_matrix_diag}, index=common.index).to_csv(out / "influence.csv")
     endpoints = pd.DataFrame(index=panel.index)
-    for name in ["xle", "xle_price", "oil", "market"]:
+    for name in ["xle", "xle_price", "oil", "futures", "market"]:
         endpoints[name + "_calendar_days_before_month_end"] = (panel.index.to_series() - panel[name + "_date"]).dt.days
     endpoints["oil_equity_source_dates_match"] = panel.oil_date == panel.xle_date
     endpoints.to_csv(out / "endpoint_audit.csv")
     # Full eligible baseline separately documents sample cost of shared lag comparisons.
-    full = fit(panel, "xle", ["gpr100", "oil", "market"])
+    full = fit(panel, "xle", ["gpr100", "oil", "market"], "calendarHAC6")
     from src.v1_audit import summary
-    aligned = common_date_returns(market).join(panel[["gpr100"]]).reindex(common.index)
+    aligned = common_date_returns(market, spot).join(panel[["gpr100"]]).reindex(common.index)
     aligned_result = fit(aligned, "xle", ["gpr100", "oil", "market"])
     alignment_summary = summary(aligned_result)
     alignment_summary["covariance"] = "HAC6"
-    alignment_summary["definition"] = "Last date in each month with all three market quotes; GPR still full calendar-month mean. Same 306 months."
+    alignment_summary["definition"] = "Last date in each month with all three market quotes; Publisher monthly GPR on the fixed comparison months."
     (out / "common_date_sensitivity.json").write_text(json.dumps(alignment_summary, indent=2))
-    (out / "baseline_full_sample.json").write_text(json.dumps(summary(full), indent=2))
+    (out / "baseline_full_sample.json").write_text(json.dumps(dict(**summary(full), covariance="calendarHAC6"), indent=2))
+    comparisons = []
+    for oil in ("oil", "futures"):
+        for risk in ("gpr100", "daily_gpr100"):
+            if common[[oil, risk, "xle", "market"]].isna().any().any():
+                raise ValueError("Incomplete sensitivity sample")
+            model = fit(common, "xle", [risk, oil, "market"])
+            for term in [oil, risk, "market", "const"]:
+                limits = model.conf_int().loc[term]
+                comparisons.append(dict(oil_source="EIA RWTC" if oil == "oil" else "CL=F",
+                    gpr_source="publisher monthly" if risk == "gpr100" else "retained daily mean",
+                    term=term, beta=model.params[term], ci_low=limits.iloc[0], ci_high=limits.iloc[1],
+                    p=model.pvalues[term], n=int(model.nobs), r_squared=model.rsquared, covariance="HAC6"))
+    pd.DataFrame(comparisons).to_csv(out / "matched_proxy_comparisons.csv", index=False)
+    reconciliation(official, read_gpr(), common.index).to_csv(out / "gpr_reconciliation.csv")
     scenarios = []
     for label, oil, equity in [("Bear", -.10, -.05), ("Base", 0, .01), ("Bull", .08, .04),
                                 ("Oil shock", .15, -.02), ("Market selloff", -.05, -.10)]:
@@ -75,7 +91,7 @@ def run_pipeline(out: Path) -> dict:
     subset = main_rows.loc[main_rows.term != "const"].set_index("term")
     ax.errorbar(subset.coefficient, range(len(subset)),
                 xerr=[subset.coefficient-subset.ci_low, subset.ci_high-subset.coefficient], fmt="o", capsize=4)
-    ax.set_yticks(range(len(subset)), ["GPR (100 index points)", "Oil proxy (log change)", "S&P 500 (log return)"])
+    ax.set_yticks(range(len(subset)), ["GPR (100 index points)", "Cushing spot (log change)", "S&P 500 (log return)"])
     ax.axvline(0, color="grey", linewidth=1)
     ax.set_xlabel("Coefficient and 95% HAC(6) confidence interval")
     ax.set_title(f"XLE conditional associations | n={int(result.nobs)} | through March 2026")
@@ -88,8 +104,9 @@ def run_pipeline(out: Path) -> dict:
     manifest = {"config": asdict(CONFIG), "packages": versions, "market_receipt": receipt,
                 "python_version": platform.python_version(), "platform": platform.platform(),
                 "gpr_sha256": sha256(ROOT / "data/raw/data_gpr_daily_recent.xls"),
-                "gpr_vintage": "Retained V1 workbook through 2026-04-27; retrieval date unknown",
-                "results_status": "Exploratory, current market vintage plus retained GPR vintage",
+                "official_sources": sources,
+                "gpr_vintage": "Publisher April 2026 monthly release. Retained daily archive checked separately.",
+                "results_status": "Exploratory spot-price exposure using official monthly GPR",
                 "complete_month_cutoff": CONFIG.complete_through,
                 "common_sample_n": int(result.nobs), "common_sample_start": str(common.index.min().date()),
                 "common_sample_end": str(common.index.max().date()),
@@ -109,6 +126,7 @@ def main() -> None:
     args = parser.parse_args()
     if args.fetch:
         fetch()
+        fetch_official()
     destination = ROOT / "outputs/v2"
     with staged_output(destination) as stage:
         result = run_pipeline(stage)

@@ -1,5 +1,8 @@
 # Version 2 methodology and reproduction contract
 
+> Historical October draft. See the [November spot-price and monthly GPR revision](SPOT_GPR_RECONCILIATION.md) for current results.
+
+
 Scope fixed on 2026-10-25 (America/Chicago); implementation review 2026-10-26. This is a retrospective, exploratory association study, not a trading model or causal mediation analysis. No random simulation is used in estimation. Synthetic tests use seed 20261025.
 
 ## Evidence and vintages

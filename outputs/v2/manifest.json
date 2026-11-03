@@ -57,8 +57,30 @@
   "python_version": "3.14.4",
   "platform": "Windows-11-10.0.26300-SP0",
   "gpr_sha256": "b77dc72915b7ca73f2d2278057388426fa147f7bc8f93adc5ebf7cb2f8e8c251",
-  "gpr_vintage": "Retained V1 workbook through 2026-04-27; retrieval date unknown",
-  "results_status": "Exploratory, current market vintage plus retained GPR vintage",
+  "official_sources": {
+    "downloads": {
+      "spot.xls": {
+        "url": "https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls",
+        "sha256": "1f4c7c6c80c4ef6eb9e7b6c95e87c8df6439e3fb6ecccea72e9135bb37acf048",
+        "retrieved_utc": "2026-11-03T00:28:45.311291+00:00"
+      },
+      "monthly.xls": {
+        "url": "https://raw.githubusercontent.com/iacoviel/iacoviel.github.io/259210729676a533a1256b512ab47c41f52fe2f0/gpr_archive_files/data_gpr_export_202604.xls",
+        "sha256": "da487ad52540e133a1d316875c9ae6657ddd6efd7c06dd4b8332718fbad59f0a",
+        "retrieved_utc": "2026-11-03T00:28:45.755718+00:00"
+      },
+      "daily.xls": {
+        "url": "https://raw.githubusercontent.com/iacoviel/iacoviel.github.io/259210729676a533a1256b512ab47c41f52fe2f0/gpr_archive_files/data_gpr_daily_recent_20260427.xls",
+        "sha256": "72213d279a3488dfa9e4bbf70c559b118716fcf24553091dd01d4b60b0c532e1",
+        "retrieved_utc": "2026-11-03T00:28:45.613846+00:00"
+      }
+    },
+    "matched_daily_rows": 15092,
+    "eia_last_available": "2026-10-27",
+    "monthly_last_available": "2026-03-31"
+  },
+  "gpr_vintage": "Publisher April 2026 monthly release. Retained daily archive checked separately.",
+  "results_status": "Exploratory spot-price exposure using official monthly GPR",
   "complete_month_cutoff": "2026-03-31",
   "common_sample_n": 306,
   "common_sample_start": "2000-10-31",
@@ -66,37 +88,40 @@
   "v1_preserved": true,
   "artifact_hash_scheme": "SHA256; CRLF normalized to LF in text artifacts; binary files unchanged. Input cache SHA256 remains exact bytes.",
   "source_code_hashes": {
-    "main.py": "416b0166cc68b129660c4493549f8854d64d1b5a34b42c121c2f3af887561581",
+    "main.py": "24dd29e8745204f11753b36ee010dc0ba1304d1defb3994c5bf8662d44bae08a",
     "requirements-lock.txt": "b3c0ecbdd91472492fa083e00b05ef1635cb5ba175ef35ee4f9be21a4c1b3ecd",
     "docs/v1/FROZEN_INPUTS.json": "d8c95bfdbf33dc9549e57f79ebc34d4c3606a14071ca7e9ac7ae078705cdb3b1",
     "src/__init__.py": "abe9e70d0a6e5aed6fe576a7d55024c63112c14a86aa4bd0609a36da24f7ea0d",
     "src/analysis.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/config.py": "43473f939c1dcee0a268ee1e9a4dc2819713fbf45d554e6b945747993aa9f928",
     "src/data_loader.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/official_sources.py": "bd1990f2e9a1c8dfe6f741b162d2ce4bba752353af2b3ee7fb7db4e729286087",
     "src/run_artifacts.py": "63b559cd309bf3f462ef8f555fa3a21f03f70666563a3eed6c5b455fb59768ea",
     "src/v1_audit.py": "3b0a2a6e9cae0f0af1036703c32724da6008f9ead730b95cc7aec8f72df8e650",
-    "src/v2_data.py": "ce2b05d1c04da7d099e02801c62510904a00ceb46355086c7c34694c926634de",
+    "src/v2_data.py": "39cb53f00efae5239bc1ccfb37a6a4f9e021fc7618522d2cd4ca71224a122911",
     "src/v2_models.py": "49da68a5f900b46e06f1b3b79323ab265428603521f776e7410e361994c177a1",
     "src/visualization.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "artifact_hashes": {
-    "baseline_full_sample.json": "300877ad3a790f37275ab611c76e5196c9cd1671aeb97a259e12a25ceeaf4035",
-    "coefficients.csv": "efc949d927fdd66bcf1980fb68e6582fa1e362fb51cfbaebbd9e8f40b77b3145",
-    "common_date_sensitivity.json": "0d746c3fbfa7724742efff1c5f56f564db1b749246acd3a4ec879af215cc724e",
-    "conditional_scenarios.csv": "411a0fb9c77c5538d856f31d17f73b9ff2935aa130bbfcd3da72bbcbd481f1e5",
-    "diagnostics.json": "fef0a3c8c90ddb3de67665e11a820aac680876e448464ca778ac64e9017842b3",
-    "endpoint_audit.csv": "1878bda3c73ecab0db46db2e3d400a64e8b820c057fb03c5725c5f4954f7131f",
+    "baseline_full_sample.json": "d109e139a7a58efbd9f18eca44a359d214c847493d05f661ed7727c72158d6ea",
+    "coefficients.csv": "da698810336a578e987a356265e90648176f12222103a53f7b217f7704584466",
+    "common_date_sensitivity.json": "85f07fcbdd293df36eb7e5066cc64df5992611a4eb38930c3176287d9dd0a135",
+    "conditional_scenarios.csv": "dfeb7df907e5508dc93b99ff40840de613825cfd76317e4a53e7735d39d26289",
+    "diagnostics.json": "3083ca2cd5c324ea4e7e61d170cd0e7a9bce02f8f2c691c59e69d8de619c2da8",
+    "endpoint_audit.csv": "dee9ca35ca0609bec757c1054504fd24aa73b9a03d494debe72b38083d1530e8",
     "gpr_coverage.csv": "a504cfb8e582c0fbb9bdec5918e063f722ed06ec7cfb7674929ee08a5559004e",
-    "influence.csv": "17c34c933928665df7b9ea3209d402efc8c0a0c8a6e0cd8fcaa484294c3684b3",
-    "joint_gpr_tests.csv": "e34ed6a6c4a62c100cab263522dbcb18183d63e612fee6b3d079cb8643e37b0e",
-    "monthly_panel.csv": "2c9a224a45d16c48e2e7ef7254771f7e24ea5079d125a6dec053e546d2a6fe3c",
-    "nonpositive_daily_oil.csv": "8802243779ed7418666b306d5a8b49bcc5f47863f0e2f43e1421ddeb625d7593",
-    "sample_ledger.csv": "57af4c107d290d8be7b8681be6958559d4623e1b2452acc443d8d8799460139d",
+    "gpr_reconciliation.csv": "55d74c7e80b3d6744c674594fccf605972f7aec8f698111794ebe62966e8e9c5",
+    "influence.csv": "cc925354714cbb92f9abc8fc119c49f611a4891f2b1aa4d731a832f22fd60854",
+    "joint_gpr_tests.csv": "2a0554acbd5384544bca8f046503cca52352990bf021410d607dec2d2e35e994",
+    "matched_proxy_comparisons.csv": "ff2f83aa220dbfcdfa2e8f03c50a76b4b6356fe40730a46c735b2486a7d60b23",
+    "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
+    "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
+    "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
     "v1_audit.json": "9dd81a545c148a344fc257fcc6d1dde74331d661627ff1bbbbc9313047abe75f",
-    "v1_replay_stdout.txt": "754b595cf61f5e9c5a67b09d77454efa1c4f74a0391d9e0f1e0afec55674ae46",
+    "v1_replay_stdout.txt": "846ef6609457b7968982a35a3e2eee61c077e3652d3dd2e3bf7a60a49ef1334f",
     "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
     "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b",
-    "xle_coefficients.png": "6c724ba77ecd632df03ec7ae1b6df1d0706f494638a8fedc54a6138785319c09",
-    "reproducibility_check.json": "3d6d7b8bffcec85b9cb90f870b364c0b805c41fc3828a896262dbbbb99fc825a"
+    "xle_coefficients.png": "03b19755cfa798e167833d713bf4c0d2dd86afd9e56641ce105535e79dfc870c",
+    "reproducibility_check.json": "53d171d43c88ba9db612ce213a0ff8ca4848bf073444ed1a2c6b77656da21b7d"
   }
 }

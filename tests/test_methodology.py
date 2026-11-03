@@ -87,4 +87,4 @@ def test_common_date_sensitivity_uses_shared_trading_date():
     frame = pd.DataFrame({("Adj Close", "XLE"): [100., 110., 121.],
                           ("Close", "CL=F"): [50., 55., np.nan],
                           ("Close", "^GSPC"): [1000., 1100., 1210.]}, index=dates)
-    assert_allclose(common_date_returns(frame).iloc[-1], np.log(1.1))
+    assert_allclose(common_date_returns(frame, frame["Close"]["CL=F"]).iloc[-1], np.log(1.1))

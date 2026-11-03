@@ -117,21 +117,25 @@ def read_gpr() -> pd.Series:
     gpr = pd.read_excel(ROOT / "data/raw/data_gpr_daily_recent.xls", engine="xlrd")
     return gpr.set_index("date")["GPRD"]
 
-def build_panel(market: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+def build_panel(market: pd.DataFrame, spot: pd.Series, official_gpr: pd.Series) -> tuple[pd.DataFrame, pd.DataFrame]:
     gpr = monthly_gpr(read_gpr())
     index = pd.date_range(CONFIG.start, CONFIG.complete_through, freq="ME")
     panel = pd.DataFrame(index=index)
     for name, field, ticker in [("xle", "Adj Close", "XLE"),
                                  ("xle_price", "Close", "XLE"),
-                                 ("oil", "Close", "CL=F"),
+                                 ("futures", "Close", "CL=F"),
                                  ("market", "Close", "^GSPC")]:
         monthly = monthly_prices(market[field][ticker])
         panel[name] = monthly["return"]
         panel[name + "_date"] = monthly["source_date"]
         panel[name + "_stale"] = monthly["stale_endpoint"].reindex(index, fill_value=False)
-        if name == "oil":
-            panel["oil_dollars"] = monthly.price.diff()
-    panel["gpr100"] = gpr.gpr.where(gpr.complete) / 100
+    cash = monthly_prices(spot)
+    panel["oil"] = cash["return"]
+    panel["oil_date"] = cash.source_date
+    panel["oil_stale"] = cash.stale_endpoint
+    panel["oil_dollars"] = cash.price.diff()
+    panel["daily_gpr100"] = gpr.gpr.where(gpr.complete) / 100
+    panel["gpr100"] = official_gpr / 100
     panel["dgpr"] = log_returns(panel.gpr100)
     # Lag on the full calendar grid BEFORE any sample deletion.
     for column in ["gpr100", "dgpr", "xle", "oil", "market"]:
@@ -139,9 +143,9 @@ def build_panel(market: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
             panel[f"{column}_lag{lag}"] = panel[column].shift(lag)
     return panel, gpr
 
-def common_date_returns(market: pd.DataFrame) -> pd.DataFrame:
+def common_date_returns(market: pd.DataFrame, spot: pd.Series) -> pd.DataFrame:
     """Sensitivity: select last date per month with all three market quotes."""
     daily = pd.DataFrame({"xle": market["Adj Close"]["XLE"],
-                          "oil": market["Close"]["CL=F"],
+                          "oil": spot,
                           "market": market["Close"]["^GSPC"]}).dropna()
     return pd.DataFrame({name: monthly_prices(daily[name])["return"] for name in daily})

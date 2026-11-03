@@ -1,5 +1,8 @@
 # Validation scope
 
+> Historical October draft. See the [November spot-price and monthly GPR revision](SPOT_GPR_RECONCILIATION.md) for current results.
+
+
 **Review-ready exploratory implementation; not ready for confirmatory, causal or forecasting claims. Completeness: partial historical reproduction.** Repairs were made on a branch. Totals below are scoped inventory counts, not an overall accuracy score; 0/N means no remaining demonstrated defect, not complete source authentication.
 
 Inventory: four focal input series (XLE, CL=F, S&P 500, GPR); three consequential calculation groups (V1 replay, V2 model comparisons, scenarios); one new coefficient chart; three narrative claims (oil/market association, uncertain GPR association, no established mediation). V1 company/volatility/extreme-GPR analyses were code-replayed but not promoted as V2 claims. Interactive dashboard behavior is out of scope.

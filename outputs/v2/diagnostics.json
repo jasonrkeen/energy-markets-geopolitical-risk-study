@@ -1,6 +1,6 @@
 {
-  "durbin_watson": 2.195170461421052,
-  "ljung_box_residuals_lag12_p": 0.017073212418190542,
-  "breusch_pagan_lm_p": 0.1843270722884694,
+  "durbin_watson": 2.1870633606721985,
+  "ljung_box_residuals_lag12_p": 0.015153611330711728,
+  "breusch_pagan_lm_p": 0.23097634380198134,
   "interpretation": "Descriptive specification diagnostics; no causal validation or model selection by p-value."
 }

@@ -1,12 +1,12 @@
 model,hypothesis,p,p_holm_across_models
-xle_gpr_market,all GPR terms jointly zero,0.42817944413762626,1.0
-xle_full,all GPR terms jointly zero,0.06320497500234805,0.6320497500234805
-oil_gpr_market,all GPR terms jointly zero,0.8404597806175655,1.0
-oil_gpr_lags_controlled,all GPR terms jointly zero,0.6731610870501379,1.0
-xle_gpr_lags_controlled,all GPR terms jointly zero,0.07053937789659545,0.6348544010693591
-oil_lagged_only,all GPR terms jointly zero,0.738540072771535,1.0
-xle_lagged_only,all GPR terms jointly zero,0.7375802955618724,1.0
-xle_gpr_change,all GPR terms jointly zero,0.0500684393169325,0.5507528324862575
-oil_gpr_change,all GPR terms jointly zero,0.7415190793024973,1.0
-xle_close_sensitivity,all GPR terms jointly zero,0.07120139137070126,0.6348544010693591
-xle_oil_dollar_sensitivity,all GPR terms jointly zero,0.5077901820920808,1.0
+xle_gpr_market,all GPR terms jointly zero,0.45433249879889426,1.0
+xle_full,all GPR terms jointly zero,0.0887460689327129,0.8874606893271291
+oil_gpr_market,all GPR terms jointly zero,0.7869423729990469,1.0
+oil_gpr_lags_controlled,all GPR terms jointly zero,0.6879796725137224,1.0
+xle_gpr_lags_controlled,all GPR terms jointly zero,0.14808357036146041,1.0
+oil_lagged_only,all GPR terms jointly zero,0.7432752815569238,1.0
+xle_lagged_only,all GPR terms jointly zero,0.6773958688922876,1.0
+xle_gpr_change,all GPR terms jointly zero,0.051839705541046936,0.5702367609515163
+oil_gpr_change,all GPR terms jointly zero,0.7626360821090622,1.0
+xle_close_sensitivity,all GPR terms jointly zero,0.09821218759491439,0.8874606893271291
+xle_oil_dollar_sensitivity,all GPR terms jointly zero,0.5178640455806727,1.0

@@ -1,5 +1,8 @@
 # Version 2 findings and red-team report
 
+> Historical October draft. See the [November spot-price and monthly GPR revision](SPOT_GPR_RECONCILIATION.md) for current results.
+
+
 2026-10-25 initial review; revised after implementation review on 2026-10-26. See [PR1_REVIEW.md](PR1_REVIEW.md). **Share with caveats for exploratory association research; exact historical reproduction remains partial.** Base commit: `89b692ca5cb6412a283a82c7a55c33fceb6412f4`. Original notebook, retained data and V1 outputs were preserved; corrections are on a review branch.
 
 ## What was reproduced

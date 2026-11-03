@@ -156,7 +156,7 @@ def test_daily_panel_to_models_and_fixed_sample_guard(monkeypatch):
     config = replace(data.CONFIG, start="2000-01-01", comparison_start="2000-10-31", complete_through="2004-12-31")
     monkeypatch.setattr(data, "CONFIG", config)
     monkeypatch.setattr(models, "CONFIG", config)
-    panel, _ = data.build_panel(market)
+    panel, _ = data.build_panel(market, market["Close"]["CL=F"], gpr.resample("ME").mean())
     coefficients, tests, ledger = models.estimate(panel)
     assert ledger.included_common.sum() == 51
     assert len(tests) == 11

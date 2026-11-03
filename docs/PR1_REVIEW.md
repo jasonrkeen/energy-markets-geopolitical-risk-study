@@ -1,5 +1,8 @@
 # PR #1 methodological and implementation review
 
+> Historical October draft. See the [November spot-price and monthly GPR revision](SPOT_GPR_RECONCILIATION.md) for current results.
+
+
 Reviewed October 26, 2026 against initial draft commit `9a33580c9b3314dff98b1c8bdbb217fa4851d98e`. This is a source/code review with independent calculation checks, not an independent external reviewer endorsement. The PR remains a draft; main, original notebook, original retained inputs and V1 outputs are unchanged. The initial delivery bundle is preserved separately.
 
 **Decision:** the repaired workflow is review-ready for explicitly qualified, retrospective exploratory associations. It is not a validated causal, predictive or investment-return model. Missing original-vintage evidence prevents exact historical reproduction; it does not by itself invalidate a clearly identified current-vintage exploratory estimate.
