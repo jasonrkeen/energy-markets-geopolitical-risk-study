@@ -1,5 +1,7 @@
 # Energy markets and geopolitical risk
 
+**Release candidate, November 11, 2026.** [Current report and stability review](docs/RELEASE_CANDIDATE.md) | [Clean-environment validation](docs/CLEAN_VALIDATION.json). PR #1 remains draft. Oil exposure is positive across the reported checks; full-model instability and residual dependence remain.
+
 XLE had an estimated Cushing WTI spot-price exposure of **0.322** over 306 completed months from October 2000 through March 2026. A 1% higher monthly spot-price change was associated with approximately 0.32% higher XLE return, conditional on S&P 500 return and publisher monthly GPR. The 95% HAC interval was 0.235 to 0.408. The matched CL=F sensitivity gave 0.321. The GPR coefficient had p=0.089. These are retrospective associations.
 
 [Current findings, source reconciliation and methodological limits](docs/SPOT_GPR_RECONCILIATION.md) · [Source manifest](outputs/v2/manifest.json) · [Matched results](outputs/v2/matched_proxy_comparisons.csv)

@@ -1,6 +1,6 @@
 {
   "offline_numeric_csvs_identical": true,
-  "csv_count": 13,
+  "csv_count": 17,
   "hash_scheme": "SHA256 after CRLF-to-LF normalization",
   "sha256": {
     "coefficients.csv": "da698810336a578e987a356265e90648176f12222103a53f7b217f7704584466",
@@ -14,6 +14,10 @@
     "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
     "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
     "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
+    "stability_calendar_audit.csv": "abbcd0b9547d3890c7ed8090564a238021de2a4e60c958884615d7d12f4a8a64",
+    "stability_diagnostics.csv": "97f2039afa4900e173e600cd8f9293d468c5a70745d2250a025b9164e6a21f22",
+    "stability_estimates.csv": "45a4e9e4f53b768c18e3503f76a09202295055fd5d23f98ec196f6d2995d454a",
+    "stability_tests.csv": "8352457654f522d2d5aba644863a7b4f81a8435a4a60cdefcf84c6e3b6c50892",
     "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
     "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b"
   }

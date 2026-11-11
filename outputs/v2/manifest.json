@@ -88,7 +88,7 @@
   "v1_preserved": true,
   "artifact_hash_scheme": "SHA256; CRLF normalized to LF in text artifacts; binary files unchanged. Input cache SHA256 remains exact bytes.",
   "source_code_hashes": {
-    "main.py": "24dd29e8745204f11753b36ee010dc0ba1304d1defb3994c5bf8662d44bae08a",
+    "main.py": "1210b5cf89d6b77c785c625f9a066029222bcb7e609671b9e87cac8d634eda8c",
     "requirements-lock.txt": "b3c0ecbdd91472492fa083e00b05ef1635cb5ba175ef35ee4f9be21a4c1b3ecd",
     "docs/v1/FROZEN_INPUTS.json": "d8c95bfdbf33dc9549e57f79ebc34d4c3606a14071ca7e9ac7ae078705cdb3b1",
     "src/__init__.py": "abe9e70d0a6e5aed6fe576a7d55024c63112c14a86aa4bd0609a36da24f7ea0d",
@@ -97,6 +97,7 @@
     "src/data_loader.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/official_sources.py": "bd1990f2e9a1c8dfe6f741b162d2ce4bba752353af2b3ee7fb7db4e729286087",
     "src/run_artifacts.py": "63b559cd309bf3f462ef8f555fa3a21f03f70666563a3eed6c5b455fb59768ea",
+    "src/stability.py": "4b46fc2cd72508a45bfcaa9d7576eed9d294dfbcb479dd58e6b54bd77a0fcce5",
     "src/v1_audit.py": "3b0a2a6e9cae0f0af1036703c32724da6008f9ead730b95cc7aec8f72df8e650",
     "src/v2_data.py": "39cb53f00efae5239bc1ccfb37a6a4f9e021fc7618522d2cd4ca71224a122911",
     "src/v2_models.py": "49da68a5f900b46e06f1b3b79323ab265428603521f776e7410e361994c177a1",
@@ -117,11 +118,15 @@
     "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
     "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
     "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
+    "stability_calendar_audit.csv": "abbcd0b9547d3890c7ed8090564a238021de2a4e60c958884615d7d12f4a8a64",
+    "stability_diagnostics.csv": "97f2039afa4900e173e600cd8f9293d468c5a70745d2250a025b9164e6a21f22",
+    "stability_estimates.csv": "45a4e9e4f53b768c18e3503f76a09202295055fd5d23f98ec196f6d2995d454a",
+    "stability_tests.csv": "8352457654f522d2d5aba644863a7b4f81a8435a4a60cdefcf84c6e3b6c50892",
     "v1_audit.json": "9dd81a545c148a344fc257fcc6d1dde74331d661627ff1bbbbc9313047abe75f",
-    "v1_replay_stdout.txt": "846ef6609457b7968982a35a3e2eee61c077e3652d3dd2e3bf7a60a49ef1334f",
+    "v1_replay_stdout.txt": "05a73e6242c3a0a7c8dafc50d300381339b4006a5cd199449c14862bdaf8c58a",
     "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
     "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b",
     "xle_coefficients.png": "03b19755cfa798e167833d713bf4c0d2dd86afd9e56641ce105535e79dfc870c",
-    "reproducibility_check.json": "53d171d43c88ba9db612ce213a0ff8ca4848bf073444ed1a2c6b77656da21b7d"
+    "reproducibility_check.json": "c136b2aaa674ed180576d1206def1fde04f67fdfcba21c7ff8bd3c9247d66143"
   }
 }

@@ -35,6 +35,8 @@ def run_pipeline(out: Path) -> dict:
     daily_oil.loc[daily_oil <= 0].to_csv(out / "nonpositive_daily_oil.csv")
     main_rows = coefficients.query("model == 'xle_full' and covariance == 'HAC6'")
     common = panel.loc[ledger.included_common]
+    from src.stability import review
+    review(common, out)
     result = fit(common, "xle", ["gpr100", "oil", "market"])
     from statsmodels.stats.diagnostic import acorr_ljungbox, het_breuschpagan
     from statsmodels.stats.stattools import durbin_watson
