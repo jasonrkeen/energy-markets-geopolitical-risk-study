@@ -28,3 +28,4 @@ outputs/.v2-previous-*/
 
 # Local release rendering and source-inclusive delivery bundle stay outside Git.
 outputs/release-candidate/
+outputs/release-v2/

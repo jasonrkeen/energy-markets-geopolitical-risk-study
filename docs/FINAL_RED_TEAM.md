@@ -1,6 +1,6 @@
 # Final red-team review
 
-November 11, 2026. Review baseline: d739736. Decision: **ready to merge as a retrospective exploratory study after the final checks pass**. Keep PR #1 draft and unmerged for the owner's decision.
+November 11, 2026. Review baseline: d739736. Decision: **ready to merge as a retrospective exploratory study after the final checks pass**. Subsequent disposition: the owner authorized the ready-for-review transition and merge; PR #1 merged on November 11, 2026 as 7504e2b. Final head and post-merge checks passed.
 
 ## Supported findings and fixes
 
@@ -29,4 +29,4 @@ This is a final agent self-review, with independent numerical cross-checks, not 
 
 No unresolved P1/P2 issue was found that blocks merging the declared retrospective study after these fixes and checks. The oil association is a qualified historical average. Residual dependence, full-model instability, calendar/intraday uncertainty, GPR revision/aggregation differences, and unavailable original market downloads remain explicit limitations. They block stronger causal, stable-exposure, exact historical-vintage or forecasting claims, rather than this bounded retrospective release.
 
-No merge or ready-for-review transition is performed. Owner approval remains the next release action. An untouched future evaluation and a suitable causal design are separate research projects, not implied by merge readiness.
+The review originally retained draft status pending owner approval. That approval was subsequently given and the PR merged. An untouched future evaluation and a suitable causal design are separate research projects, not implied by merge readiness.
