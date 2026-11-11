@@ -15,7 +15,7 @@ import pandas as pd
 from src.official_sources import fetch_official, read_official, reconciliation
 from src.config import CONFIG, ROOT
 from src.v1_audit import audit
-from src.v2_data import CACHE, build_panel, common_date_returns, content_hash, fetch, read_gpr, read_market, sha256
+from src.v2_data import CACHE, build_panel, common_date_returns, content_hash, fetch, read_gpr, read_market, sha256, require_complete_sample
 from src.v2_models import estimate, fit, scenario_log_prediction
 from src.run_artifacts import staged_output
 
@@ -57,6 +57,7 @@ def run_pipeline(out: Path) -> dict:
     full = fit(panel, "xle", ["gpr100", "oil", "market"], "calendarHAC6")
     from src.v1_audit import summary
     aligned = common_date_returns(market, spot).join(panel[["gpr100"]]).reindex(common.index)
+    aligned = require_complete_sample(aligned, common.index, ["xle", "gpr100", "oil", "market"])
     aligned_result = fit(aligned, "xle", ["gpr100", "oil", "market"])
     alignment_summary = summary(aligned_result)
     alignment_summary["covariance"] = "HAC6"

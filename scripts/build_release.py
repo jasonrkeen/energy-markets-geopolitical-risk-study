@@ -4,11 +4,10 @@ Run after main.py --verify-repeat and the clean-environment check.
 Optional publishing dependency: reportlab==4.4.9.
 """
 import csv
-import json
 from pathlib import Path
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_LEFT
+from release_inputs import validate_release_inputs
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,8 +18,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     rows = list(csv.DictReader((ROOT/'outputs/v2/stability_estimates.csv').open()))
     oil = {r['model']: r for r in rows if r['term'] == 'oil'}
-    checks = json.loads((ROOT/'docs/CLEAN_VALIDATION.json').read_text())
-    assert checks['csv_hashes_equal'] and checks['tests_passed'] == 37
+    checks = validate_release_inputs(ROOT)
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Deck', fontSize=12, leading=17, textColor=colors.HexColor('#42576b'), spaceAfter=14))
     styles['Title'].textColor = colors.HexColor('#102f48')
@@ -57,7 +55,7 @@ def main() -> None:
     para('Sources and calendar alignment', 'Heading2')
     para('EIA Cushing WTI spot is primary; CL=F is a stitched futures-price sensitivity. Publisher monthly GPR is primary; the retained daily average is a sensitivity. All 306 months have complete source inputs. Eighteen month-end observations use different oil and equity dates; the common-date estimate is 0.323. Quote-date auditing does not establish synchronized intraday pricing or an independently verified holiday calendar.')
     para('Validation completed', 'Heading2')
-    para('A new isolated Python 3.14.4 environment installed the pinned analysis dependencies. A separate source copy passed 37 tests and two cached-input pipeline runs; all 17 numerical CSVs matched the development run after documented line-ending normalization. Original V1 files remain preserved. This is same-machine clean-environment validation; the historical market download vintage remains unavailable.')
+    para(f'A new isolated Python 3.14.4 environment installed the pinned analysis dependencies. A separate source copy passed {checks["tests_passed"]} tests and two cached-input pipeline runs; all 17 numerical CSVs matched the development run after documented line-ending normalization. Original V1 files remain preserved. This is same-machine clean-environment validation; the historical market download vintage remains unavailable.')
     para('Release decision and next steps', 'Heading2')
     para('Suitable for review as an exploratory historical exposure study. Keep PR #1 in draft pending reviewer acceptance. Forecasting requires a frozen protocol and genuinely untouched future observations. Causal claims require a defensible identification design. Archive exact source bytes subject to source terms; refreshed live downloads can revise history.')
     para('Sources and full evidence', 'Heading2')

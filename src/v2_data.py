@@ -149,3 +149,11 @@ def common_date_returns(market: pd.DataFrame, spot: pd.Series) -> pd.DataFrame:
                           "oil": spot,
                           "market": market["Close"]["^GSPC"]}).dropna()
     return pd.DataFrame({name: monthly_prices(daily[name])["return"] for name in daily})
+
+
+def require_complete_sample(frame: pd.DataFrame, expected: pd.DatetimeIndex, columns: list[str]) -> pd.DataFrame:
+    """Reject missing comparison months instead of letting OLS silently drop them."""
+    sample = frame.reindex(expected)[columns]
+    if not np.isfinite(sample.to_numpy(dtype=float)).all():
+        raise ValueError("Fixed comparison sample incomplete or nonfinite")
+    return sample

@@ -15,7 +15,8 @@ CRISES = (("exclude_gfc", "2008-09", "2009-06"),
 
 
 def period_labels(index: pd.DatetimeIndex) -> np.ndarray:
-    if len(index) != 306 or not np.all(np.diff(index.to_period("M").asi8) == 1):
+    expected = pd.date_range("2000-10-31", "2026-03-31", freq="ME")
+    if not index.equals(expected):
         raise ValueError("Stability review requires the fixed 306 consecutive months")
     return np.repeat(np.arange(3), 102)
 

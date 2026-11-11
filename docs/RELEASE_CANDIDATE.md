@@ -60,7 +60,7 @@ Remaining research limits are residual dependence, full-model instability, sourc
 
 ## Validation and release contents
 
-A new isolated Python 3.14.4 environment with system packages disabled installed requirements-lock.txt successfully; pip check found no broken requirements. A separate source copy and exact local raw caches passed 37 tests and two complete pipeline runs. All 17 numerical CSVs matched the development environment after declared CRLF-to-LF normalization. V1's 33 cells replayed and original-file fingerprints passed. The original 308-observation replay remains a near-reproduction, not the unavailable original market vintage.
+A new isolated Python 3.14.4 environment with system packages disabled installed requirements-lock.txt successfully; pip check found no broken requirements. A separate source copy and exact local raw caches passed 41 tests and two complete pipeline runs. All 17 numerical CSVs matched the development environment after declared CRLF-to-LF normalization. V1's 33 cells replayed and original-file fingerprints passed. The original 308-observation replay remains a near-reproduction, not the unavailable original market vintage.
 
 An independent least-squares calculation verified the pooled interaction coefficients implied the separately fitted period coefficients to maximum absolute difference 2.31e-15. Validation is bounded to the same Windows machine and Python version; clean installation is not independent data acquisition or independent methodological review. Package installation reused downloaded wheel caches. No fresh source download was used for the numerical comparison.
 
@@ -74,4 +74,10 @@ Machine-readable environment, source and output checks are in [CLEAN_VALIDATION.
 4. Compare the 17 CSV hashes with docs/CLEAN_VALIDATION.json using the declared line-ending normalization.
 5. Optionally install requirements-report.txt and run `python scripts/build_release.py` to regenerate the executive PDF. PDF byte identity is not asserted because generated document metadata can vary.
 
-PR #1 remains draft and unmerged. The release candidate can proceed to reviewer acceptance as retrospective exploratory research. Before forecasting, freeze hypotheses and a future evaluation window with release-time data. Before causal claims, establish a defensible identification design. Recovery of the original daily market downloads would strengthen V1 reproduction, but their absence is not concealed by the current-vintage numerical match.
+PR #1 remains draft and unmerged. The final red-team review recommends merging within the retrospective exploratory scope. PR draft status is retained for the owner's decision. Before forecasting, freeze hypotheses and a future evaluation window with release-time data. Before causal claims, establish a defensible identification design. Recovery of the original daily market downloads would strengthen V1 reproduction, but their absence is not concealed by the current-vintage numerical match.
+
+## Final red-team disposition
+
+[Final review](FINAL_RED_TEAM.md) found and fixed a silent sample-reduction path in the common-date sensitivity and a stale-narrative path in PDF generation. The fixed stability date window now rejects shifted samples. Independent synthetic calculations verify the robust pooled Wald tests. These safeguards do not change any of the 17 frozen numerical CSVs. The final 41-test rerun used another separate source copy and the previously created isolated environment; the environment was not recreated for this follow-up.
+
+PDF generation now requires the numerical tables, common-date JSON and validated source hashes to match the frozen editorial inputs and current validation receipt. Changed data require renewed editorial review. No unresolved release-blocking defect was found for the declared retrospective scope. An external independent methodological review has not occurred; this is an agent self-review with independent numerical cross-checks.
