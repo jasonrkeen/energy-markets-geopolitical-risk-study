@@ -1,0 +1,248 @@
+{
+  "date": "2026-11-11",
+  "scope": "Final review: separate source copy, reusing the isolated Windows Python 3.14.4 environment created during release validation; no dependency changes",
+  "python": "3.14.4",
+  "system_site_packages": false,
+  "tests_passed": 41,
+  "pip_check": "No broken requirements found",
+  "csv_hashes_equal": true,
+  "csv_count": 17,
+  "hash_scheme": "SHA256 after CRLF-to-LF normalization for CSVs",
+  "csv_sha256": {
+    "coefficients.csv": "da698810336a578e987a356265e90648176f12222103a53f7b217f7704584466",
+    "conditional_scenarios.csv": "dfeb7df907e5508dc93b99ff40840de613825cfd76317e4a53e7735d39d26289",
+    "endpoint_audit.csv": "dee9ca35ca0609bec757c1054504fd24aa73b9a03d494debe72b38083d1530e8",
+    "gpr_coverage.csv": "a504cfb8e582c0fbb9bdec5918e063f722ed06ec7cfb7674929ee08a5559004e",
+    "gpr_reconciliation.csv": "55d74c7e80b3d6744c674594fccf605972f7aec8f698111794ebe62966e8e9c5",
+    "influence.csv": "cc925354714cbb92f9abc8fc119c49f611a4891f2b1aa4d731a832f22fd60854",
+    "joint_gpr_tests.csv": "2a0554acbd5384544bca8f046503cca52352990bf021410d607dec2d2e35e994",
+    "matched_proxy_comparisons.csv": "ff2f83aa220dbfcdfa2e8f03c50a76b4b6356fe40730a46c735b2486a7d60b23",
+    "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
+    "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
+    "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
+    "stability_calendar_audit.csv": "abbcd0b9547d3890c7ed8090564a238021de2a4e60c958884615d7d12f4a8a64",
+    "stability_diagnostics.csv": "97f2039afa4900e173e600cd8f9293d468c5a70745d2250a025b9164e6a21f22",
+    "stability_estimates.csv": "45a4e9e4f53b768c18e3503f76a09202295055fd5d23f98ec196f6d2995d454a",
+    "stability_tests.csv": "8352457654f522d2d5aba644863a7b4f81a8435a4a60cdefcf84c6e3b6c50892",
+    "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
+    "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b"
+  },
+  "source_code_hashes": {
+    "main.py": "a48528ff98294b8be06b6b5809d9c8c717f979fbcb5f777ba4f4730e71a56011",
+    "requirements-lock.txt": "b3c0ecbdd91472492fa083e00b05ef1635cb5ba175ef35ee4f9be21a4c1b3ecd",
+    "docs/v1/FROZEN_INPUTS.json": "d8c95bfdbf33dc9549e57f79ebc34d4c3606a14071ca7e9ac7ae078705cdb3b1",
+    "src/__init__.py": "abe9e70d0a6e5aed6fe576a7d55024c63112c14a86aa4bd0609a36da24f7ea0d",
+    "src/analysis.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/config.py": "43473f939c1dcee0a268ee1e9a4dc2819713fbf45d554e6b945747993aa9f928",
+    "src/data_loader.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/official_sources.py": "bd1990f2e9a1c8dfe6f741b162d2ce4bba752353af2b3ee7fb7db4e729286087",
+    "src/run_artifacts.py": "63b559cd309bf3f462ef8f555fa3a21f03f70666563a3eed6c5b455fb59768ea",
+    "src/stability.py": "ef8a995cebc03b54952cd90918aebfbeed6b484e86fd35b931808a2138f96dcd",
+    "src/v1_audit.py": "3b0a2a6e9cae0f0af1036703c32724da6008f9ead730b95cc7aec8f72df8e650",
+    "src/v2_data.py": "058c27b925c9d8a2c2c7dad6f1f3fbd71295ce34d3a7a947bf307eeaed84fa82",
+    "src/v2_models.py": "49da68a5f900b46e06f1b3b79323ab265428603521f776e7410e361994c177a1",
+    "src/visualization.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "protocol_sha256": "13d8506d6336ab7e953fe965c375ef70cf4f03b5c340663901257b428d6e542f",
+  "packages": [
+    {
+      "name": "beautifulsoup4",
+      "version": "4.15.0"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23"
+    },
+    {
+      "name": "cffi",
+      "version": "2.1.1"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2"
+    },
+    {
+      "name": "colorama",
+      "version": "0.4.6"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0"
+    },
+    {
+      "name": "curl_cffi",
+      "version": "0.16.3"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.67.0"
+    },
+    {
+      "name": "frozendict",
+      "version": "2.4.7"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.8"
+    },
+    {
+      "name": "multitasking",
+      "version": "0.0.13"
+    },
+    {
+      "name": "numpy",
+      "version": "2.4.4"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pandas",
+      "version": "3.0.2"
+    },
+    {
+      "name": "patsy",
+      "version": "1.0.3"
+    },
+    {
+      "name": "peewee",
+      "version": "4.5.3"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0"
+    },
+    {
+      "name": "pip",
+      "version": "26.0.1"
+    },
+    {
+      "name": "platformdirs",
+      "version": "4.13.5"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0"
+    },
+    {
+      "name": "protobuf",
+      "version": "7.36.2"
+    },
+    {
+      "name": "pycparser",
+      "version": "3.12"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3"
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0"
+    },
+    {
+      "name": "pytz",
+      "version": "2026.5"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.17.1"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0"
+    },
+    {
+      "name": "soupsieve",
+      "version": "3.0.4"
+    },
+    {
+      "name": "statsmodels",
+      "version": "0.14.6"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.5"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0"
+    },
+    {
+      "name": "websockets",
+      "version": "17.3"
+    },
+    {
+      "name": "xlrd",
+      "version": "2.0.2"
+    },
+    {
+      "name": "yfinance",
+      "version": "1.2.2"
+    }
+  ],
+  "independent_pooled_coefficient_max_error": 2.310651670001107e-15,
+  "repeat_receipt": {
+    "offline_numeric_csvs_identical": true,
+    "csv_count": 17,
+    "hash_scheme": "SHA256 after CRLF-to-LF normalization",
+    "sha256": {
+      "coefficients.csv": "da698810336a578e987a356265e90648176f12222103a53f7b217f7704584466",
+      "conditional_scenarios.csv": "dfeb7df907e5508dc93b99ff40840de613825cfd76317e4a53e7735d39d26289",
+      "endpoint_audit.csv": "dee9ca35ca0609bec757c1054504fd24aa73b9a03d494debe72b38083d1530e8",
+      "gpr_coverage.csv": "a504cfb8e582c0fbb9bdec5918e063f722ed06ec7cfb7674929ee08a5559004e",
+      "gpr_reconciliation.csv": "55d74c7e80b3d6744c674594fccf605972f7aec8f698111794ebe62966e8e9c5",
+      "influence.csv": "cc925354714cbb92f9abc8fc119c49f611a4891f2b1aa4d731a832f22fd60854",
+      "joint_gpr_tests.csv": "2a0554acbd5384544bca8f046503cca52352990bf021410d607dec2d2e35e994",
+      "matched_proxy_comparisons.csv": "ff2f83aa220dbfcdfa2e8f03c50a76b4b6356fe40730a46c735b2486a7d60b23",
+      "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
+      "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
+      "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
+      "stability_calendar_audit.csv": "abbcd0b9547d3890c7ed8090564a238021de2a4e60c958884615d7d12f4a8a64",
+      "stability_diagnostics.csv": "97f2039afa4900e173e600cd8f9293d468c5a70745d2250a025b9164e6a21f22",
+      "stability_estimates.csv": "45a4e9e4f53b768c18e3503f76a09202295055fd5d23f98ec196f6d2995d454a",
+      "stability_tests.csv": "8352457654f522d2d5aba644863a7b4f81a8435a4a60cdefcf84c6e3b6c50892",
+      "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
+      "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b"
+    }
+  },
+  "limitations": [
+    "Same OS and Python version",
+    "Not independent source acquisition",
+    "No causal or predictive validation"
+  ],
+  "final_review_csvs_unchanged_from_d739736": true
+}

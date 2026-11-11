@@ -1,0 +1,132 @@
+{
+  "config": {
+    "start": "1998-01-01",
+    "end_exclusive": "2026-05-01",
+    "complete_through": "2026-03-31",
+    "comparison_start": "2000-10-31",
+    "replay_through": "2026-04-28",
+    "hac_lags": [
+      3,
+      6,
+      12
+    ],
+    "max_endpoint_age_days": 4,
+    "tickers": [
+      "XLE",
+      "CL=F",
+      "^GSPC",
+      "BP",
+      "SHEL",
+      "XOM",
+      "CVX"
+    ]
+  },
+  "packages": {
+    "pandas": "3.0.2",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "statsmodels": "0.14.6",
+    "matplotlib": "3.10.8",
+    "yfinance": "1.2.2",
+    "xlrd": "2.0.2"
+  },
+  "market_receipt": {
+    "provider": "Yahoo Finance via yfinance",
+    "yfinance": "1.2.2",
+    "retrieved_start_utc": "2026-10-26T02:46:57.029708+00:00",
+    "retrieved_end_utc": "2026-10-26T02:47:00.523337+00:00",
+    "start": "1998-01-01",
+    "end_exclusive": "2026-05-01",
+    "tickers": [
+      "XLE",
+      "CL=F",
+      "^GSPC",
+      "BP",
+      "SHEL",
+      "XOM",
+      "CVX"
+    ],
+    "auto_adjust": false,
+    "back_adjust": false,
+    "repair": false,
+    "actions": true,
+    "keepna": true,
+    "sha256": "a1d49879f1f8fa145e9b17d0902f1e66c358b107cf1946be9fd9db69eae93c35",
+    "vintage_warning": "Current vendor vintage, not the missing April 2026 download."
+  },
+  "python_version": "3.14.4",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "gpr_sha256": "b77dc72915b7ca73f2d2278057388426fa147f7bc8f93adc5ebf7cb2f8e8c251",
+  "official_sources": {
+    "downloads": {
+      "spot.xls": {
+        "url": "https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls",
+        "sha256": "1f4c7c6c80c4ef6eb9e7b6c95e87c8df6439e3fb6ecccea72e9135bb37acf048",
+        "retrieved_utc": "2026-11-03T00:28:45.311291+00:00"
+      },
+      "monthly.xls": {
+        "url": "https://raw.githubusercontent.com/iacoviel/iacoviel.github.io/259210729676a533a1256b512ab47c41f52fe2f0/gpr_archive_files/data_gpr_export_202604.xls",
+        "sha256": "da487ad52540e133a1d316875c9ae6657ddd6efd7c06dd4b8332718fbad59f0a",
+        "retrieved_utc": "2026-11-03T00:28:45.755718+00:00"
+      },
+      "daily.xls": {
+        "url": "https://raw.githubusercontent.com/iacoviel/iacoviel.github.io/259210729676a533a1256b512ab47c41f52fe2f0/gpr_archive_files/data_gpr_daily_recent_20260427.xls",
+        "sha256": "72213d279a3488dfa9e4bbf70c559b118716fcf24553091dd01d4b60b0c532e1",
+        "retrieved_utc": "2026-11-03T00:28:45.613846+00:00"
+      }
+    },
+    "matched_daily_rows": 15092,
+    "eia_last_available": "2026-10-27",
+    "monthly_last_available": "2026-03-31"
+  },
+  "gpr_vintage": "Publisher April 2026 monthly release. Retained daily archive checked separately.",
+  "results_status": "Exploratory spot-price exposure using official monthly GPR",
+  "complete_month_cutoff": "2026-03-31",
+  "common_sample_n": 306,
+  "common_sample_start": "2000-10-31",
+  "common_sample_end": "2026-03-31",
+  "v1_preserved": true,
+  "artifact_hash_scheme": "SHA256; CRLF normalized to LF in text artifacts; binary files unchanged. Input cache SHA256 remains exact bytes.",
+  "source_code_hashes": {
+    "main.py": "a48528ff98294b8be06b6b5809d9c8c717f979fbcb5f777ba4f4730e71a56011",
+    "requirements-lock.txt": "b3c0ecbdd91472492fa083e00b05ef1635cb5ba175ef35ee4f9be21a4c1b3ecd",
+    "docs/v1/FROZEN_INPUTS.json": "d8c95bfdbf33dc9549e57f79ebc34d4c3606a14071ca7e9ac7ae078705cdb3b1",
+    "src/__init__.py": "abe9e70d0a6e5aed6fe576a7d55024c63112c14a86aa4bd0609a36da24f7ea0d",
+    "src/analysis.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/config.py": "43473f939c1dcee0a268ee1e9a4dc2819713fbf45d554e6b945747993aa9f928",
+    "src/data_loader.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/official_sources.py": "bd1990f2e9a1c8dfe6f741b162d2ce4bba752353af2b3ee7fb7db4e729286087",
+    "src/run_artifacts.py": "63b559cd309bf3f462ef8f555fa3a21f03f70666563a3eed6c5b455fb59768ea",
+    "src/stability.py": "ef8a995cebc03b54952cd90918aebfbeed6b484e86fd35b931808a2138f96dcd",
+    "src/v1_audit.py": "3b0a2a6e9cae0f0af1036703c32724da6008f9ead730b95cc7aec8f72df8e650",
+    "src/v2_data.py": "058c27b925c9d8a2c2c7dad6f1f3fbd71295ce34d3a7a947bf307eeaed84fa82",
+    "src/v2_models.py": "49da68a5f900b46e06f1b3b79323ab265428603521f776e7410e361994c177a1",
+    "src/visualization.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "artifact_hashes": {
+    "baseline_full_sample.json": "d109e139a7a58efbd9f18eca44a359d214c847493d05f661ed7727c72158d6ea",
+    "coefficients.csv": "da698810336a578e987a356265e90648176f12222103a53f7b217f7704584466",
+    "common_date_sensitivity.json": "85f07fcbdd293df36eb7e5066cc64df5992611a4eb38930c3176287d9dd0a135",
+    "conditional_scenarios.csv": "dfeb7df907e5508dc93b99ff40840de613825cfd76317e4a53e7735d39d26289",
+    "diagnostics.json": "3083ca2cd5c324ea4e7e61d170cd0e7a9bce02f8f2c691c59e69d8de619c2da8",
+    "endpoint_audit.csv": "dee9ca35ca0609bec757c1054504fd24aa73b9a03d494debe72b38083d1530e8",
+    "gpr_coverage.csv": "a504cfb8e582c0fbb9bdec5918e063f722ed06ec7cfb7674929ee08a5559004e",
+    "gpr_reconciliation.csv": "55d74c7e80b3d6744c674594fccf605972f7aec8f698111794ebe62966e8e9c5",
+    "influence.csv": "cc925354714cbb92f9abc8fc119c49f611a4891f2b1aa4d731a832f22fd60854",
+    "joint_gpr_tests.csv": "2a0554acbd5384544bca8f046503cca52352990bf021410d607dec2d2e35e994",
+    "matched_proxy_comparisons.csv": "ff2f83aa220dbfcdfa2e8f03c50a76b4b6356fe40730a46c735b2486a7d60b23",
+    "monthly_panel.csv": "00b4a98023bc7b03090cc9dfa04bfcd9cdc1ba6981e379fe56c8c5081779276d",
+    "nonpositive_daily_oil.csv": "e7e4c0ab14cfe05b6f1f71d882e48418f59d18a47dc65124ddd0b5d6bd3e594d",
+    "sample_ledger.csv": "e6c5b2fafee97dfb8c2c755e37cc5c14b9ce770b4c9e17ddbd899227fb2f4c0f",
+    "stability_calendar_audit.csv": "abbcd0b9547d3890c7ed8090564a238021de2a4e60c958884615d7d12f4a8a64",
+    "stability_diagnostics.csv": "97f2039afa4900e173e600cd8f9293d468c5a70745d2250a025b9164e6a21f22",
+    "stability_estimates.csv": "45a4e9e4f53b768c18e3503f76a09202295055fd5d23f98ec196f6d2995d454a",
+    "stability_tests.csv": "8352457654f522d2d5aba644863a7b4f81a8435a4a60cdefcf84c6e3b6c50892",
+    "v1_audit.json": "9dd81a545c148a344fc257fcc6d1dde74331d661627ff1bbbbc9313047abe75f",
+    "v1_replay_stdout.txt": "31a94e1fb5b54a943be3afd9b5e26d1415c319e7febd1e448dfa81317f412f42",
+    "v1_scenario_replay_deltas.csv": "2ebcac6f9f49c9e1531a05f102208a7b83811e5c8ab8c33e292fb9fa4aa2aa1f",
+    "v1_xle_return_deltas.csv": "250e317192a9acb8b118e19513dc7c35e37a6dddb65a64fcf230dec17c00112b",
+    "xle_coefficients.png": "03b19755cfa798e167833d713bf4c0d2dd86afd9e56641ce105535e79dfc870c",
+    "reproducibility_check.json": "c136b2aaa674ed180576d1206def1fde04f67fdfcba21c7ff8bd3c9247d66143"
+  }
+}

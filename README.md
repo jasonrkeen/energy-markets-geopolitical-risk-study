@@ -1,125 +1,25 @@
-# 📊 Energy Markets & Geopolitical Risk Analysis
+# Energy markets and geopolitical risk
 
-Empirical analysis of how geopolitical risk impacts energy equities (XLE) using Python and econometric modeling.
+**Release candidate, November 11, 2026.** [Current report and stability review](docs/RELEASE_CANDIDATE.md) | [Clean-environment validation](docs/CLEAN_VALIDATION.json). [Final red-team review](docs/FINAL_RED_TEAM.md) recommends merge within the retrospective scope; PR #1 remains draft for the owner's decision. Oil exposure is positive across the reported checks; full-model instability and residual dependence remain.
 
----
+XLE had an estimated Cushing WTI spot-price exposure of **0.322** over 306 completed months from October 2000 through March 2026. A 1% higher monthly spot-price change was associated with approximately 0.32% higher XLE return, conditional on S&P 500 return and publisher monthly GPR. The 95% HAC interval was 0.235 to 0.408. The matched CL=F sensitivity gave 0.321. The GPR coefficient had p=0.089. These are retrospective associations.
 
-## 🔑 Key Insight
+[Current findings, source reconciliation and methodological limits](docs/SPOT_GPR_RECONCILIATION.md) · [Source manifest](outputs/v2/manifest.json) · [Matched results](outputs/v2/matched_proxy_comparisons.csv)
 
-> Geopolitical risk does not directly drive energy stock returns — its impact is transmitted through oil prices.
+![Conditional estimates](outputs/v2/xle_coefficients.png)
 
----
+## Reproduce
 
-## 📈 XLE vs Oil Returns
+Use Python 3.14 in a virtual environment at the repository root.
 
-![XLE vs Oil](outputs/charts/xle_vs_oil.png)
-
-> Strong positive relationship between oil prices and energy equity returns (corr ≈ 0.62)
-
----
-
-## 📊 Key Results
-
-- Model explanatory power: **R² ≈ 0.57**
-- Oil sensitivity: **β ≈ 0.32**
-- Market exposure: **β ≈ 0.75**
-- Correlation:
-  - XLE vs GPR: ~0.00
-  - XLE vs Oil: ~0.62
-
-### 💡 Interpretation
-Markets do not price geopolitical risk directly—they price its economic consequences through oil.
-
----
-
-## 🛢️ Oil Sensitivity by Company
-
-![Oil Betas](outputs/charts/oil_betas.png)
-
-| Company | Oil Sensitivity |
-|--------|----------------|
-| BP | ~0.35 |
-| Shell | ~0.31 |
-| Chevron | ~0.30 |
-| Exxon | ~0.28 |
-
----
-
-## 🔮 Scenario Forecasting (XLE)
-
-| Scenario | Oil Return | S&P 500 | Forecast XLE |
-|--------|-----------|--------|-------------|
-| Bear Case | -10% | -5% | **-6.8%** |
-| Base Case | 0% | +1% | **+0.8%** |
-| Bull Case | +8% | +4% | **+5.7%** |
-| Oil Shock | +15% | -2% | **+3.8%** |
-| Market Selloff | -5% | -10% | **-8.8%** |
-
-> Oil shocks can offset weak equity markets, highlighting the sector’s unique exposure to commodity dynamics.
-
----
-
-## 🌍 Geopolitical Risk (GPR)
-
-The Geopolitical Risk Index (Caldara & Iacoviello) measures the share of global news coverage related to geopolitical tensions such as wars and terrorism.
-
-- Baseline level ≈ 100  
-- Crisis periods can exceed 150–300  
-
-Despite these spikes, GPR is not a statistically significant predictor of energy equity returns in this model.
-
----
-
-## ⚙️ Methodology
-
-- Data: XLE, WTI, S&P 500 (yfinance), GPR index  
-- Frequency: Daily → Monthly aggregation  
-- Model: OLS regression with macro controls  
-
-```python
-X = sm.add_constant(df[["gpr", "wti_return", "sp500_return"]])
-y = df["return"]
-
-model = sm.OLS(y, X).fit()
+```sh
+python -m pip install -r requirements-lock.txt
+python main.py --fetch --verify-repeat
+python -m pytest -q
 ```
 
----
+The initial fetch caches the daily Yahoo market fields, EIA RWTC workbook and archived publisher GPR workbooks. Use `python main.py --verify-repeat` for offline runs with those caches. The EIA and Yahoo histories can revise. See the current report for acquisition details and original-vintage limits.
 
-## 🎯 Why This Matters
+## Historical material
 
-- Demonstrates how macro risk transmits through commodity markets  
-- Highlights indirect pricing mechanisms in financial markets  
-- Applies econometrics to real-world financial data  
-
----
-
-## 📁 Project Structure
-
-```
-energy-markets-geopolitical-risk-study/
-├── data/
-├── notebooks/
-├── outputs/
-│   ├── charts/
-│   └── tables/
-├── README.md
-└── requirements.txt
-```
-
----
-
-## ▶️ Setup
-
-```bash
-pip install -r requirements.txt
-```
-
-```bash
-jupyter notebook notebooks/analysis.ipynb
-```
-
----
-
-## 👤 Author
-
-Jason Keen
+The original notebook is preserved and replayed in isolation. The October draft used CL=F and a daily-average GPR index as its primary inputs. Its review records are retained for comparison. [V1 README](docs/v1/README.md) · [October methodology](docs/METHODOLOGY_V2.md) · [October review](docs/PR1_REVIEW.md)
