@@ -23,3 +23,7 @@ The initial fetch caches the daily Yahoo market fields, EIA RWTC workbook and ar
 ## Historical material
 
 The original notebook is preserved and replayed in isolation. The October draft used CL=F and a daily-average GPR index as its primary inputs. Its review records are retained for comparison. [V1 README](docs/v1/README.md) · [October methodology](docs/METHODOLOGY_V2.md) · [October review](docs/PR1_REVIEW.md)
+
+## Data redistribution
+
+The v2.0.0 attached ZIP is distribution revision 2: licensed GPR snapshots are included; Yahoo data and the unresolved EIA/Refinitiv cache are withheld. Some row-level outputs and V1 evidence are omitted, so the ZIP is a partial reproduction kit. The existing Git history and generated source archives have separate unresolved data exposure. Read the [permissions review](docs/DATA_REDISTRIBUTION.md) and [attribution](docs/DATA_ATTRIBUTION.md) before sharing data.
