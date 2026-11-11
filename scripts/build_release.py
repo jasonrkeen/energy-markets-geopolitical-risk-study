@@ -11,7 +11,7 @@ from release_inputs import validate_release_inputs
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'outputs/release-candidate'
+OUT = ROOT / 'outputs/release-v2'
 
 
 def main() -> None:
@@ -32,7 +32,7 @@ def main() -> None:
     def para(text: str, style: str = 'BodyText') -> None:
         story.append(Paragraph(text, styles[style]))
     para('XLE and oil-price exposure', 'Title')
-    para('Release candidate | Jason Keen | November 11, 2026<br/>Historical study: October 2000-March 2026', 'Deck')
+    para('Version 2.0.0 | Jason Keen | November 11, 2026<br/>Historical study: October 2000-March 2026', 'Deck')
     para('A positive historical association, with limits to stability', 'Heading2')
     para('Across 306 months, a 1% higher Cushing WTI spot-price change was associated with approximately 0.32% higher XLE return, conditional on the S&amp;P 500 price return and monthly geopolitical risk. The oil coefficient is 0.322, with a 95% HAC interval of 0.235-0.408. This is an estimated historical association.')
     para('The matched CL=F sensitivity gives 0.321. The primary model explains about 59% of in-sample return variation. Neither statistic establishes predictive performance or a causal transmission mechanism.')
@@ -57,14 +57,14 @@ def main() -> None:
     para('Validation completed', 'Heading2')
     para(f'A new isolated Python 3.14.4 environment installed the pinned analysis dependencies. A separate source copy passed {checks["tests_passed"]} tests and two cached-input pipeline runs; all 17 numerical CSVs matched the development run after documented line-ending normalization. Original V1 files remain preserved. This is same-machine clean-environment validation; the historical market download vintage remains unavailable.')
     para('Release decision and next steps', 'Heading2')
-    para('Suitable for review as an exploratory historical exposure study. Keep PR #1 in draft pending reviewer acceptance. Forecasting requires a frozen protocol and genuinely untouched future observations. Causal claims require a defensible identification design. Archive exact source bytes subject to source terms; refreshed live downloads can revise history.')
+    para('Released as a retrospective exploratory study after PR #1 merged and post-merge checks passed. Forecasting requires a frozen protocol and genuinely untouched future observations. Causal claims require a defensible identification design. Public assets omit newly acquired raw caches; the local archive retains exact inputs. Fresh downloads can revise history.')
     para('Sources and full evidence', 'Heading2')
-    para('<link href="https://www.eia.gov/dnav/pet/hist/RWTCD.htm" color="#195b88">EIA Cushing WTI daily prices</link> | <link href="https://www.matteoiacoviello.com/gpr.htm" color="#195b88">Caldara-Iacoviello GPR</link> | <link href="https://github.com/jasonrkeen/energy-markets-geopolitical-risk-study/pull/1" color="#195b88">Draft PR and technical report</link><br/>Exact vintages, checksums, all sensitivity results and limitations are included in the reproduction bundle and RELEASE_CANDIDATE.md.')
+    para('<link href="https://www.eia.gov/dnav/pet/hist/RWTCD.htm" color="#195b88">EIA Cushing WTI daily prices</link> | <link href="https://www.matteoiacoviello.com/gpr.htm" color="#195b88">Caldara-Iacoviello GPR</link> | <link href="https://github.com/jasonrkeen/energy-markets-geopolitical-risk-study/pull/1" color="#195b88">Merged study and technical report</link><br/>Exact vintages, checksums, all sensitivity results and limitations are included in the reproduction bundle and RELEASE_V2.md.')
     def footer(canvas, doc):
         canvas.setFont('Helvetica',8);canvas.setFillColor(colors.HexColor('#42576b'))
-        canvas.drawString(42,25,'ENERGY MARKETS | Exploratory research | Release candidate')
+        canvas.drawString(42,25,'ENERGY MARKETS | Exploratory research | Version 2.0.0')
         canvas.drawRightString(570,25,str(doc.page))
-    SimpleDocTemplate(str(OUT/'executive-brief.pdf'),pagesize=(612,792),rightMargin=42,leftMargin=42,topMargin=38,bottomMargin=40,title='XLE oil exposure - release candidate',author='Jason Keen').build(story,onFirstPage=footer,onLaterPages=footer)
+    SimpleDocTemplate(str(OUT/'executive-brief.pdf'),pagesize=(612,792),rightMargin=42,leftMargin=42,topMargin=38,bottomMargin=40,title='XLE oil exposure - Version 2.0.0',author='Jason Keen').build(story,onFirstPage=footer,onLaterPages=footer)
 
 if __name__ == '__main__':
     main()
