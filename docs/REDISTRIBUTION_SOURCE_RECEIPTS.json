@@ -1,0 +1,44 @@
+{
+  "gpr": {
+    "url": "https://www.matteoiacoviello.com/gpr.htm",
+    "retrieved_utc": "2026-11-11T23:54:35.435769+00:00",
+    "sha256": "e8a718f1e34439b4cd0aab8d97d00f3eb304c0e4cc78286686ea6162abe342b9",
+    "http_status": 200
+  },
+  "cc-by": {
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "retrieved_utc": "2026-11-11T23:54:35.922741+00:00",
+    "sha256": "8dda1ccec4be91fc80821d4e4fd5c568072b9a3a74b2fdc07c249a27e920ef01",
+    "http_status": 200
+  },
+  "eia-reuse": {
+    "url": "https://www.eia.gov/about/copyrights_reuse.php",
+    "retrieved_utc": "2026-11-11T23:54:36.545986+00:00",
+    "sha256": "142d571fc7ac90f19742cb438c5f436d6d4561e9d3c82dce0a059194a0e5d8a3",
+    "http_status": 200
+  },
+  "eia-prices": {
+    "url": "https://www.eia.gov/TodayinEnergy/prices.php",
+    "retrieved_utc": "2026-11-11T23:54:37.282404+00:00",
+    "sha256": "2dbb98bcef9eaa771a548e6ff1f96ef9c4dffdd4276c42d17bb4461fdba4ae96",
+    "http_status": 200
+  },
+  "yahoo-providers": {
+    "url": "https://help.yahoo.com/kb/SLN2310.html",
+    "retrieved_utc": "2026-11-11T23:54:38.067581+00:00",
+    "sha256": "cd3b386cb26a517e7b26dd5ceedea3988deff9d8b3e81db2b1ae3bbfd9044f2d",
+    "http_status": 200
+  },
+  "yahoo-terms": {
+    "url": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+    "retrieved_utc": "2026-11-11T23:54:38.893336+00:00",
+    "sha256": "268da8486fc5ac8919487c759188e60055386f7dd6aae0d0c667d06bb45439fe",
+    "http_status": 200
+  },
+  "yfinance": {
+    "url": "https://ranaroussi.github.io/yfinance/",
+    "retrieved_utc": "2026-11-11T23:54:39.417378+00:00",
+    "sha256": "7fd290a8dc757f01c04eff8e6bfb11c87b5d63a6ebe9f1f19a54a1615ebf771f",
+    "http_status": 200
+  }
+}
